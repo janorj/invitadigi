@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>🦋 Alejandro & Paula - Nuestra Boda</title>
+    
+    <!-- Meta tags para compartir en WhatsApp -->
+    <meta property="og:title" content="🦋 Alejandro & Paula - ¡Nos Casamos!" />
+    <meta property="og:description" content="5 de diciembre de 2026 - Te esperamos para celebrar nuestro amor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://invitacion.pages.dev" />
+    <meta property="og:image" content="https://invitacion.pages.dev/assets/img/foto-pareja.jpg" />
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mariposas flotantes -->
+    <div class="butterfly butterfly-1">🦋</div>
+    <div class="butterfly butterfly-2">🦋</div>
+    <div class="butterfly butterfly-3">🦋</div>
+
+    <!-- ===== SECCIÓN 1: PORTADA ===== -->
+    <section class="section portada" id="inicio">
+        <div class="portada-content">
+            <div class="foto-container">
+                <!-- AÑADE AQUÍ TU FOTO DE PAREJA -->
+                <div class="foto-placeholder">
+                    <span>📸</span>
+                    <p>Vuestra foto aquí</p>
+                </div>
+                <!-- 
+                Cuando tengas la foto, descomenta esta línea y borra el div de arriba:
+                <img src="assets/img/foto-pareja.jpg" alt="Alejandro y Paula" class="foto-pareja">
+                -->
+            </div>
+            <div class="portada-texto">
+                <p class="subtitulo">¡Nos casamos!</p>
+                <h1 class="titulo">Alejandro <span class="ampersand">&amp;</span> Paula</h1>
+                <p class="fecha">5 de Diciembre de 2026</p>
+                <div class="divider">🦋</div>
+                <p class="invitacion-texto">Te esperamos para celebrar juntos<br>este día tan especial</p>
+            </div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
+    <nav class="menu">
+        <a href="#inicio" class="menu-item">Inicio</a>
+        <a href="#cronograma" class="menu-item">Día</a>
+        <a href="#info" class="menu-item">Lugar</a>
+        <a href="#rsvp" class="menu-item">RSVP</a>
+        <a href="#hoteles" class="menu-item">Alojamiento</a>
+    </nav>
+
+    <!-- ===== SECCIÓN 2: CONTADOR ===== -->
+    <section class="section contador-section" id="contador">
+        <div class="container">
+            <p class="section-subtitle">Faltan</p>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span id="dias">00</span>
+                    <span class="label">Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="horas">00</span>
+                    <span class="label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutos">00</span>
+                    <span class="label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="segundos">00</span>
+                    <span class="label">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN 3: CRONOGRAMA ===== -->
+    <section class="section schedule-section" id="cronograma">
+        <div class="container">
+            <h2 class="section-title">✨ Nuestro día</h2>
+            <div class="schedule-timeline">
+                <div class="schedule-item">
+                    <div class="schedule-icon">💒</div>
+                    <div class="schedule-time">13:00</div>
+                    <div class="schedule-event">Ceremonia</div>
+                    <div class="schedule-place">Iglesia de Getxo</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-icon">🥂</div>
+                    <div class="schedule-time">14:30</div>
+                    <div class="schedule-event">Cocktail</div>
+                    <div class="schedule-place">Jardines del hotel</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-icon">🍽️</div>
+                    <div class="schedule-time">15:30</div>
+                    <div class="schedule-event">Banquete</div>
+                    <div class="schedule-place">Salón Principal</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-icon">🎂</div>
+                    <div class="schedule-time">17:30</div>
+                    <div class="schedule-event">Tarta</div>
+                    <div class="schedule-place">Salón Principal</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-icon">💃</div>
+                    <div class="schedule-time">19:00</div>
+                    <div class="schedule-event">Baile</div>
+                    <div class="schedule-place">Pista de baile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN 4: INFORMACIÓN ===== -->
+    <section class="section info-section" id="info">
+        <div class="container">
+            <h2 class="section-title">📍 Lugar</h2>
+            <div class="event-info">
+                <div class="info-card">
+                    <div class="info-icon">📅</div>
+                    <p class="info-label">Fecha</p>
+                    <p class="info-value">5 de Diciembre de 2026</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <p class="info-label">Lugar</p>
+                    <p class="info-value">Petit Palace Tamarises</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-link">Ver en Google Maps →</a>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💝</div>
+                    <p class="info-label">Código</p>
+                    <p class="info-value">"bodaalejandroypaula"</p>
+                </div>
+            </div>
+            <div class="message-box">
+                <p class="message-text">
+                    "Tu presencia es el mejor regalo que podríamos recibir."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN 5: RSVP ===== -->
+    <section class="section rsvp-section" id="rsvp">
+        <div class="container">
+            <h2 class="section-title">💌 Confirma tu asistencia</h2>
+            <p class="rsvp-text">Cuéntanos si podrás acompañarnos</p>
+            <button id="btnRSVP" class="rsvp-button">
+                <span>Confirmar Asistencia</span>
+                <span class="button-icon">🦋</span>
+            </button>
+            <p class="rsvp-note">Confirma antes del <strong>2 de noviembre</strong></p>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN 6: ALOJAMIENTO ===== -->
+    <section class="section hoteles-section" id="hoteles">
+        <div class="container">
+            <h2 class="section-title">🏨 Alojamiento</h2>
+            <p class="hoteles-intro">Hemos buscado algunas opciones cercanas para tu estancia:</p>
+            <div class="hoteles-grid">
+                <div class="hotel-card">
+                    <h3>Petit Palace Tamarises</h3>
+                    <p>Frente a la playa de Ereaga</p>
+                    <span class="hotel-code">Código: "bodaalejandroypaula"</span>
+                </div>
+                <div class="hotel-card">
+                    <h3>Hotel Artaza</h3>
+                    <p>A poca distancia caminable</p>
+                </div>
+                <div class="hotel-card">
+                    <h3>Puente Colgante Boutique</h3>
+                    <p>Cerca de la ceremonia</p>
+                </div>
+            </div>
+            <p class="hoteles-mas">📋 <a href="#inicio">Ver más opciones en nuestra web</a></p>
+        </div>
+    </section>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="footer">
+        <p>💕 Con mucho amor, Alejandro & Paula 💕</p>
+        <p class="footer-note">#AlejandroYPaula2026</p>
+    </footer>
+
+    <!-- ===== MODAL RSVP ===== -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Confirmar Asistencia</h2>
+            <p class="modal-subtitle">Cuéntanos si podrás acompañarnos</p>
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-group">
+                    <label for="nombre">Tu nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Alejandro" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono (opcional)</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+34 666 000 000">
+                </div>
+                <div class="form-group">
+                    <label for="invitados">Número de acompañantes</label>
+                    <input type="number" id="invitados" name="invitados" min="0" max="5" value="0">
+                </div>
+                <div class="form-group">
+                    <label>¿Alergias o restricciones?</label>
+                    <textarea id="alergias" name="alergias" placeholder="Ej: Alergia al marisco, vegano..."></textarea>
+                </div>
+                <button type="submit" class="submit-rsvp">Enviar confirmación ✨</button>
+            </form>
+            <div id="rsvpSuccess" class="rsvp-success" style="display:none;">
+                <div class="success-icon">✅</div>
+                <h3>¡Gracias por confirmar!</h3>
+                <p>Te esperamos el <strong>5 de diciembre</strong> para celebrar juntos.</p>
+                <button class="close-success" id="closeSuccess">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
