@@ -72,7 +72,7 @@ form.addEventListener('submit', function(e) {
         return;
     }
 
-    const mensaje = `🦋 *Confirmación de asistencia* 🦋%0A%0A` +
+    const mensaje = `🌿 *Confirmación de asistencia* 🌿%0A%0A` +
         `👤 *Nombre:* ${nombre}%0A` +
         `📱 *Teléfono:* ${telefono || 'No especificado'}%0A` +
         `👥 *Acompañantes:* ${invitados}%0A` +

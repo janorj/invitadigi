@@ -14,81 +14,65 @@ body {
     background: #FEFCF8;
     color: #2D3A2D;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* ===== MARIPOSAS FLOTANTES (8 mariposas) ===== */
+/* ===== DECORACIONES BOTÁNICAS LATERALES ===== */
+.botanical-left,
+.botanical-right {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.6rem;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.botanical-left {
+    left: 8px;
+}
+
+.botanical-right {
+    right: 8px;
+}
+
+.botanical-left span,
+.botanical-right span {
+    animation: floatBotanical 12s infinite ease-in-out;
+}
+
+.botanical-left span:nth-child(odd),
+.botanical-right span:nth-child(odd) {
+    animation-delay: -2s;
+}
+
+@keyframes floatBotanical {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+/* ===== MARIPOSAS FLOTANTES ===== */
 .butterfly {
     position: fixed;
     font-size: 2.8rem;
-    opacity: 0.3;
+    opacity: 0.25;
     animation: floatButterfly 20s infinite ease-in-out;
     pointer-events: none;
     z-index: 0;
 }
 
-.butterfly-1 {
-    top: 3%;
-    left: 3%;
-    animation-delay: 0s;
-    font-size: 2.5rem;
-    opacity: 0.35;
-}
-
-.butterfly-2 {
-    top: 10%;
-    right: 5%;
-    animation-delay: -3s;
-    font-size: 2rem;
-    opacity: 0.25;
-}
-
-.butterfly-3 {
-    top: 25%;
-    left: 8%;
-    animation-delay: -6s;
-    font-size: 3rem;
-    opacity: 0.3;
-}
-
-.butterfly-4 {
-    bottom: 15%;
-    right: 6%;
-    animation-delay: -9s;
-    font-size: 2.8rem;
-    opacity: 0.35;
-}
-
-.butterfly-5 {
-    bottom: 30%;
-    left: 5%;
-    animation-delay: -12s;
-    font-size: 2.2rem;
-    opacity: 0.25;
-}
-
-.butterfly-6 {
-    top: 45%;
-    right: 3%;
-    animation-delay: -15s;
-    font-size: 2.5rem;
-    opacity: 0.2;
-}
-
-.butterfly-7 {
-    bottom: 5%;
-    left: 12%;
-    animation-delay: -18s;
-    font-size: 2rem;
-    opacity: 0.25;
-}
-
-.butterfly-8 {
-    top: 60%;
-    left: 2%;
-    animation-delay: -21s;
-    font-size: 1.8rem;
-    opacity: 0.2;
-}
+.butterfly-1 { top: 3%; left: 3%; animation-delay: 0s; font-size: 2.5rem; opacity: 0.3; }
+.butterfly-2 { top: 10%; right: 5%; animation-delay: -3s; font-size: 2rem; opacity: 0.2; }
+.butterfly-3 { top: 25%; left: 8%; animation-delay: -6s; font-size: 3rem; opacity: 0.25; }
+.butterfly-4 { bottom: 15%; right: 6%; animation-delay: -9s; font-size: 2.8rem; opacity: 0.3; }
+.butterfly-5 { bottom: 30%; left: 5%; animation-delay: -12s; font-size: 2.2rem; opacity: 0.2; }
+.butterfly-6 { top: 45%; right: 3%; animation-delay: -15s; font-size: 2.5rem; opacity: 0.15; }
+.butterfly-7 { bottom: 5%; left: 12%; animation-delay: -18s; font-size: 2rem; opacity: 0.2; }
+.butterfly-8 { top: 60%; left: 2%; animation-delay: -21s; font-size: 1.8rem; opacity: 0.15; }
 
 @keyframes floatButterfly {
     0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
@@ -117,10 +101,41 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px 20px 30px;
-    background: linear-gradient(160deg, #FEFCF8 0%, #F5F0E8 20%, #E8F0E0 45%, #F5E8EE 70%, #FEFCF8 100%);
+    background: 
+        radial-gradient(ellipse at 10% 20%, rgba(82, 183, 136, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(231, 76, 122, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(78, 168, 168, 0.03) 0%, transparent 70%),
+        linear-gradient(160deg, #FEFCF8 0%, #F5F0E8 20%, #E8F0E0 45%, #F5E8EE 70%, #FEFCF8 100%);
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+/* Ramo de flores superior e inferior */
+.ramo-superior,
+.ramo-inferior {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.4rem;
+    opacity: 0.4;
+    flex-wrap: wrap;
+}
+
+.ramo-superior {
+    margin-bottom: 10px;
+}
+
+.ramo-inferior {
+    margin-top: 16px;
+}
+
+.flor-rama {
+    animation: floatBotanical 8s infinite ease-in-out;
+}
+
+.flor-rama:nth-child(even) {
+    animation-delay: -3s;
 }
 
 .portada-content {
@@ -131,20 +146,18 @@ body {
     width: 100%;
 }
 
-/* Mariposa central */
 .mariposa-central {
     font-size: 3.5rem;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     animation: floatButterfly 6s infinite ease-in-out;
     display: inline-block;
     color: #2D6A4F;
 }
 
-/* Mariposas alrededor del título */
 .mariposas-titulo {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
     margin: 4px 0 10px;
 }
 
@@ -155,30 +168,11 @@ body {
 }
 
 .mariposas-titulo .mt-1 { animation-delay: 0s; color: #E76F51; }
-.mariposas-titulo .mt-2 { animation-delay: -2s; color: #4EA8A8; }
+.mariposas-titulo .mt-2 { animation-delay: -2s; color: #52B788; }
 .mariposas-titulo .mt-3 { animation-delay: -4s; color: #E74C7A; }
 
-/* Decoraciones florales */
-.floral-top {
-    margin-bottom: 10px;
-}
-
-.floral-top svg {
-    width: 100%;
-    height: 40px;
-}
-
-.floral-bottom {
-    margin-top: 16px;
-}
-
-.floral-bottom svg {
-    width: 100%;
-    height: 50px;
-}
-
 .texto-principal {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .texto-principal .bendicion {
@@ -209,7 +203,7 @@ body {
     backdrop-filter: blur(4px);
     border-radius: 16px;
     padding: 16px 18px;
-    margin: 8px 0 12px;
+    margin: 6px 0 12px;
     border-left: 4px solid #52B788;
     border-right: 4px solid #4EA8A8;
 }
@@ -228,19 +222,24 @@ body {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    margin: 12px 0 14px;
+    margin: 10px 0 12px;
 }
 
 .separador .linea {
     flex: 1;
     height: 2px;
     background: linear-gradient(to right, transparent, #D4A847, transparent);
-    max-width: 50px;
+    max-width: 40px;
 }
 
 .separador .icono-mariposa {
     font-size: 1.4rem;
     color: #2D6A4F;
+}
+
+.separador .icono-floral {
+    font-size: 1.2rem;
+    color: #E74C7A;
 }
 
 .info-boda {
@@ -270,7 +269,7 @@ body {
 }
 
 .mensaje-final {
-    background: rgba(82, 183, 136, 0.08);
+    background: rgba(82, 183, 136, 0.06);
     border-radius: 14px;
     padding: 14px 16px;
     margin: 8px 0 4px;
@@ -310,11 +309,11 @@ body {
     z-index: 10;
     display: flex;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
     padding: 10px 12px;
     background: rgba(254, 252, 248, 0.95);
     backdrop-filter: blur(12px);
-    border-bottom: 2px solid rgba(82, 183, 136, 0.25);
+    border-bottom: 2px solid rgba(82, 183, 136, 0.2);
     flex-wrap: wrap;
 }
 
@@ -366,7 +365,7 @@ body {
     border-radius: 16px;
     padding: 12px 0 10px;
     backdrop-filter: blur(4px);
-    border: 2px solid rgba(82, 183, 136, 0.2);
+    border: 2px solid rgba(82, 183, 136, 0.15);
 }
 
 .countdown-item span:first-child {
@@ -389,11 +388,10 @@ body {
 .mariposas-contador {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 14px;
     margin-top: 16px;
-    font-size: 1.8rem;
-    color: #4EA8A8;
-    opacity: 0.5;
+    font-size: 1.6rem;
+    opacity: 0.4;
 }
 
 /* ===== CRONOGRAMA ===== */
@@ -424,8 +422,14 @@ body {
     border-radius: 14px;
     padding: 10px 14px;
     gap: 12px;
-    box-shadow: 0 2px 12px rgba(45, 106, 79, 0.08);
-    border: 1.5px solid rgba(82, 183, 136, 0.15);
+    box-shadow: 0 2px 12px rgba(45, 106, 79, 0.06);
+    border: 1.5px solid rgba(82, 183, 136, 0.12);
+    transition: all 0.3s ease;
+}
+
+.schedule-item:active {
+    transform: scale(0.98);
+    border-color: #52B788;
 }
 
 .schedule-icon {
@@ -456,12 +460,12 @@ body {
 }
 
 .mariposa-seccion {
-    text-align: center;
-    font-size: 2.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
     margin-top: 18px;
-    color: #E76F51;
-    opacity: 0.4;
-    animation: floatButterfly 10s infinite ease-in-out;
+    font-size: 1.6rem;
+    opacity: 0.3;
 }
 
 /* ===== INFORMACIÓN ===== */
@@ -482,7 +486,7 @@ body {
     border-radius: 14px;
     padding: 12px 6px;
     text-align: center;
-    border: 1.5px solid rgba(82, 183, 136, 0.15);
+    border: 1.5px solid rgba(82, 183, 136, 0.1);
 }
 
 .info-icon {
@@ -516,12 +520,12 @@ body {
 }
 
 .message-box {
-    background: rgba(82, 183, 136, 0.08);
+    background: rgba(82, 183, 136, 0.06);
     border-radius: 14px;
     padding: 14px 18px;
     border-left: 4px solid #52B788;
     border-right: 4px solid #4EA8A8;
-    position: relative;
+    text-align: center;
 }
 
 .message-text {
@@ -529,14 +533,14 @@ body {
     font-style: italic;
     color: #2D3A2D;
     font-size: 0.95rem;
-    text-align: center;
     line-height: 1.5;
 }
 
-.message-mariposa {
-    position: absolute;
-    right: 10px;
-    bottom: 6px;
+.message-decoracion {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
     font-size: 1.2rem;
     opacity: 0.3;
 }
@@ -569,7 +573,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 24px rgba(82, 183, 136, 0.4);
+    box-shadow: 0 6px 24px rgba(82, 183, 136, 0.35);
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -577,7 +581,7 @@ body {
 
 .rsvp-button:active {
     transform: scale(0.96);
-    box-shadow: 0 3px 12px rgba(82, 183, 136, 0.2);
+    box-shadow: 0 3px 12px rgba(82, 183, 136, 0.15);
 }
 
 .rsvp-button .button-icon {
@@ -594,11 +598,10 @@ body {
 .mariposas-rsvp {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     margin-top: 14px;
-    font-size: 1.6rem;
-    color: #E74C7A;
-    opacity: 0.3;
+    font-size: 1.4rem;
+    opacity: 0.25;
 }
 
 /* ===== FOOTER ===== */
@@ -612,10 +615,10 @@ body {
 .footer-mariposas {
     display: flex;
     justify-content: center;
-    gap: 16px;
-    font-size: 1.8rem;
+    gap: 12px;
+    font-size: 1.6rem;
     margin-bottom: 8px;
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 .footer p {
