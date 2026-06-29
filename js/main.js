@@ -1,6 +1,6 @@
 // ===== CONFIGURACIÓN =====
-const FECHA_BODA = new Date('Dec 5, 2026 20:00:00').getTime();
-const FECHA_LIMITE_RSVP = new Date('Nov 2, 2026 23:59:59').getTime();
+const FECHA_BODA = new Date('Dec 5, 2026 14:30:00').getTime();
+const FECHA_LIMITE_RSVP = new Date('Nov 1, 2026 23:59:59').getTime();
 
 // ===== CONTADOR =====
 function actualizarContador() {
@@ -72,12 +72,13 @@ form.addEventListener('submit', function(e) {
         return;
     }
 
-    const mensaje = `🌿 *Confirmación de asistencia* 🌿%0A%0A` +
+    const mensaje = `🦋 *Confirmación de asistencia* 🦋%0A%0A` +
         `👤 *Nombre:* ${nombre}%0A` +
         `📱 *Teléfono:* ${telefono || 'No especificado'}%0A` +
         `👥 *Acompañantes:* ${invitados}%0A` +
         `🍽️ *Alergias/Restricciones:* ${alergias || 'Ninguna'}%0A%0A` +
-        `📅 *Evento:* Boda Alejandro & Paula - 5 de diciembre de 2026`;
+        `📅 *Evento:* Boda Alejandro & Paula - 5 de diciembre de 2026%0A` +
+        `📍 *Lugar:* Camino Tromen 3.5, Hijuela 22, Temuco`;
 
     // ⚠️ ¡CAMBIAR! Pon tu número real con código de país (sin +):
     const url = `https://wa.me/34XXXXXXXXX?text=${mensaje}`;
@@ -103,7 +104,7 @@ checkRsvpDeadline();
 
 // ===== EFECTO DE APARICIÓN AL HACER SCROLL =====
 document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.schedule-item, .info-card, .hotel-card');
+    const items = document.querySelectorAll('.schedule-item, .info-card');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
