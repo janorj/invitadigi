@@ -30,7 +30,7 @@ setInterval(actualizarContador, 1000);
 actualizarContador();
 
 // ============================================================
-// ===== SOBRE + MÚSICA (NUEVA LÓGICA) =====
+// ===== SOBRE + MÚSICA (CORREGIDO PARA MÓVILES) =====
 // ============================================================
 
 const sobreContainer = document.getElementById('sobreContainer');
@@ -42,7 +42,7 @@ const iconoMusica = document.getElementById('iconoMusica');
 let musicaIniciada = false;
 let sobreAbierto = false;
 
-// Función para iniciar la música
+// Función para iniciar la música (sin retraso)
 function iniciarMusica() {
     if (musicaIniciada) return;
     
@@ -52,11 +52,12 @@ function iniciarMusica() {
         btnMusica.classList.add('sonando');
         iconoMusica.textContent = '🔊';
         btnMusica.classList.add('visible');
-        console.log('🎵 Música iniciada');
+        console.log('🎵 Música iniciada correctamente');
     }).catch(error => {
         console.log('Error al reproducir:', error);
-        // Si falla, intentamos de nuevo con la interacción del usuario
-        iconoMusica.textContent = '🎵';
+        // Si falla, mostramos el botón para que el usuario pueda iniciar manualmente
+        iconoMusica.textContent = '▶️';
+        btnMusica.classList.add('visible');
     });
 }
 
@@ -83,54 +84,76 @@ function toggleMusica(e) {
     }
 }
 
-// ===== ABRIR EL SOBRE =====
-function abrirSobre() {
+// ===== ABRIR EL SOBRE (CORREGIDO PARA MÓVILES) =====
+function abrirSobre(e) {
+    // Prevenir comportamiento por defecto
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
     if (sobreAbierto) return;
     sobreAbierto = true;
     
-    // 1. Animación del sobre
+    // 1. INICIAR LA MÚSICA INMEDIATAMENTE (sin ningún retraso)
+    // Este es el cambio clave para que funcione en móviles
+    if (!musicaIniciada) {
+        audio.volume = 0.8;
+        audio.play().then(() => {
+            musicaIniciada = true;
+            btnMusica.classList.add('sonando');
+            iconoMusica.textContent = '🔊';
+            btnMusica.classList.add('visible');
+            console.log('🎵 Música iniciada desde el sobre');
+        }).catch(error => {
+            console.log('Error al iniciar música en móvil:', error);
+            iconoMusica.textContent = '▶️';
+            btnMusica.classList.add('visible');
+        });
+    }
+    
+    // 2. ANIMACIÓN del sobre (se ejecuta al mismo tiempo que la música)
     sobreWrapper.classList.add('abierto');
     
-    // 2. Iniciar la música
-    iniciarMusica();
-    
-    // 3. Mostrar el botón de pausa
+    // 3. Mostrar el botón de pausa inmediatamente
     btnMusica.classList.add('visible');
     
-    // 4. Desvanecer el contenedor del sobre
+    // 4. Desvanecer el contenedor del sobre (con un pequeño retraso para ver la animación)
     setTimeout(() => {
         sobreContainer.classList.add('abierto');
     }, 800);
     
-    // 5. Mostrar el contenido (las secciones ya están visibles)
-    document.body.style.overflow = 'auto';
+    // 5. Desbloquear el scroll después de que el sobre se haya desvanecido
+    setTimeout(() => {
+        document.body.style.overflow = 'auto';
+    }, 900);
 }
 
-// ===== EVENTOS =====
+// ===== EVENTOS (Con soporte para móviles y PC) =====
 
-// Clic en el sobre para abrirlo
+// Para clic en PC
 sobreWrapper.addEventListener('click', abrirSobre);
 
-// Touch en el sobre (para móviles)
+// Para toque en móviles (evita el doble disparo)
 sobreWrapper.addEventListener('touchstart', function(e) {
+    // Prevenir el comportamiento por defecto para que no interfiera
     e.preventDefault();
-    abrirSobre();
+    abrirSobre(e);
+}, { passive: false });
+
+// Para teclado (accesibilidad)
+document.addEventListener('keydown', function(e) {
+    if ((e.key === 'Enter' || e.key === ' ') && !sobreAbierto) {
+        e.preventDefault();
+        abrirSobre(e);
+    }
 });
 
 // Clic en el botón de música
 btnMusica.addEventListener('click', toggleMusica);
 
-// Tecla espacio para abrir (accesibilidad)
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        if (!sobreAbierto) {
-            abrirSobre();
-        }
-    }
-});
-
 // ============================================================
-// ===== MODAL RSVP (sin cambios) =====
+// ===== MODAL RSVP =====
 // ============================================================
 
 const modal = document.getElementById('rsvpModal');
@@ -183,6 +206,7 @@ form.addEventListener('submit', function(e) {
         `📅 *Evento:* Boda Alejandro & Paula - 5 de diciembre de 2026%0A` +
         `📍 *Lugar:* Camino Tromen 3.5, Hijuela 22, Temuco`;
 
+    // ⚠️ ¡CAMBIAR! Pon tu número real con código de país (sin +):
     const url = `https://wa.me/34XXXXXXXXX?text=${mensaje}`;
 
     form.style.display = 'none';
