@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ===== MARIPOSAS FLOTANTES ===== -->
+    <!-- ===== MARIPOSAS FLOTANTES (globales) ===== -->
     <div class="butterfly butterfly-1">🦋</div>
     <div class="butterfly butterfly-2">🦋</div>
     <div class="butterfly butterfly-3">🦋</div>
@@ -25,36 +25,27 @@
     <div class="butterfly butterfly-7">🦋</div>
     <div class="butterfly butterfly-8">🦋</div>
 
-    <!-- ===== DECORACIONES BOTÁNICAS LATERALES ===== -->
-    <div class="botanical-left">
-        <span class="leaf">🌿</span>
-        <span class="leaf">🌱</span>
-        <span class="leaf">🌿</span>
-        <span class="flower">🌸</span>
-        <span class="leaf">🌿</span>
-    </div>
-    <div class="botanical-right">
-        <span class="leaf">🌿</span>
-        <span class="flower">🌺</span>
-        <span class="leaf">🌿</span>
-        <span class="leaf">🌱</span>
-        <span class="leaf">🌿</span>
-    </div>
+    <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
+    <nav class="menu">
+        <a href="#seccion1" class="menu-item">🌿 Inicio</a>
+        <a href="#seccion2" class="menu-item">⏳ Cuenta</a>
+        <a href="#seccion3" class="menu-item">📋 Día</a>
+        <a href="#seccion4" class="menu-item">📍 Lugar</a>
+        <a href="#seccion5" class="menu-item">💌 RSVP</a>
+    </nav>
 
-    <!-- ===== SECCIÓN 1: PORTADA ===== -->
-    <section class="section portada" id="inicio">
-        <!-- Ramo de flores superior -->
-        <div class="ramo-superior">
-            <span class="flor-rama">🌿</span>
-            <span class="flor-rama">🌸</span>
-            <span class="flor-rama">🌿</span>
-            <span class="flor-rama">🌺</span>
-            <span class="flor-rama">🌿</span>
-            <span class="flor-rama">🌸</span>
-            <span class="flor-rama">🌿</span>
-        </div>
+    <!-- ===== SECCIÓN 1: PORTADA (pantalla completa) ===== -->
+    <section class="section fullscreen portada" id="seccion1">
+        <div class="section-content">
+            <!-- Ramo de flores superior -->
+            <div class="ramo-superior">
+                <span class="flor-rama">🌿</span>
+                <span class="flor-rama">🌸</span>
+                <span class="flor-rama">🌿</span>
+                <span class="flor-rama">🌺</span>
+                <span class="flor-rama">🌿</span>
+            </div>
 
-        <div class="portada-content">
             <div class="mariposa-central">🦋</div>
 
             <div class="texto-principal">
@@ -76,61 +67,20 @@
                 </p>
             </div>
 
-            <div class="separador">
-                <span class="linea"></span>
-                <span class="icono-mariposa">🦋</span>
-                <span class="icono-floral">🌿</span>
-                <span class="icono-mariposa">🦋</span>
-                <span class="icono-floral">🌸</span>
-                <span class="icono-mariposa">🦋</span>
-                <span class="linea"></span>
-            </div>
-
-            <div class="info-boda">
-                <p class="fecha-texto">
-                    Nos casamos el <strong>05 de diciembre, 2026</strong> a las <strong>14:30 hrs</strong>
-                </p>
-                <p class="lugar-texto">
-                    en <strong>Camino Tromen 3.5, Hijuela 22, Temuco</strong>
-                </p>
-            </div>
-
-            <div class="mensaje-final">
-                <p class="invitacion-texto">
-                    Esperamos contar con tu presencia y compañía en este día tan especial. 
-                    Por favor, confirma tu asistencia antes del <strong>01 de noviembre</strong> 
-                    para poder prepararnos con la alegría de saber que nos acompañarás.
-                </p>
-            </div>
-
-            <!-- Ramo de flores inferior -->
-            <div class="ramo-inferior">
-                <span class="flor-rama">🌿</span>
-                <span class="flor-rama">🌺</span>
-                <span class="flor-rama">🌿</span>
-                <span class="flor-rama">🌸</span>
-                <span class="flor-rama">🌿</span>
-                <span class="flor-rama">🌺</span>
-                <span class="flor-rama">🌿</span>
-            </div>
+            <div class="scroll-hint">↓</div>
         </div>
-
-        <div class="scroll-indicator">↓</div>
     </section>
 
-    <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
-    <nav class="menu">
-        <a href="#inicio" class="menu-item">🌿 Inicio</a>
-        <a href="#contador" class="menu-item">⏳ Cuenta</a>
-        <a href="#cronograma" class="menu-item">📋 Día</a>
-        <a href="#info" class="menu-item">📍 Lugar</a>
-        <a href="#rsvp" class="menu-item">💌 RSVP</a>
-    </nav>
+    <!-- ===== SECCIÓN 2: CONTADOR (pantalla completa) ===== -->
+    <section class="section fullscreen contador-section" id="seccion2">
+        <div class="section-content">
+            <div class="separador-top">
+                <span>🦋</span>
+                <span>🌿</span>
+                <span>🦋</span>
+            </div>
 
-    <!-- ===== SECCIÓN 2: CONTADOR ===== -->
-    <section class="section contador-section" id="contador">
-        <div class="container">
-            <p class="section-subtitle">🌿 Faltan</p>
+            <p class="section-subtitle">FALTAN</p>
             <div class="countdown-grid">
                 <div class="countdown-item">
                     <span id="dias">00</span>
@@ -149,6 +99,7 @@
                     <span class="label">Segundos</span>
                 </div>
             </div>
+
             <div class="mariposas-contador">
                 <span>🌿</span>
                 <span>🦋</span>
@@ -156,13 +107,22 @@
                 <span>🦋</span>
                 <span>🌿</span>
             </div>
+
+            <div class="scroll-hint">↓</div>
         </div>
     </section>
 
-    <!-- ===== SECCIÓN 3: CRONOGRAMA ===== -->
-    <section class="section schedule-section" id="cronograma">
-        <div class="container">
-            <h2 class="section-title">🌿 Nuestro día</h2>
+    <!-- ===== SECCIÓN 3: CRONOGRAMA (pantalla completa) ===== -->
+    <section class="section fullscreen schedule-section" id="seccion3">
+        <div class="section-content">
+            <div class="separador-top">
+                <span>🌸</span>
+                <span>🦋</span>
+                <span>🌿</span>
+            </div>
+
+            <h2 class="section-title">✨ Nuestro día</h2>
+
             <div class="schedule-timeline">
                 <div class="schedule-item">
                     <div class="schedule-icon">💒</div>
@@ -195,20 +155,22 @@
                     <div class="schedule-place">Pista</div>
                 </div>
             </div>
-            <div class="mariposa-seccion">
-                <span>🌿</span>
-                <span>🦋</span>
-                <span>🌸</span>
-                <span>🦋</span>
-                <span>🌿</span>
-            </div>
+
+            <div class="scroll-hint">↓</div>
         </div>
     </section>
 
-    <!-- ===== SECCIÓN 4: INFORMACIÓN ===== -->
-    <section class="section info-section" id="info">
-        <div class="container">
+    <!-- ===== SECCIÓN 4: LUGAR (pantalla completa) ===== -->
+    <section class="section fullscreen info-section" id="seccion4">
+        <div class="section-content">
+            <div class="separador-top">
+                <span>🌿</span>
+                <span>🦋</span>
+                <span>🌸</span>
+            </div>
+
             <h2 class="section-title">📍 Lugar</h2>
+
             <div class="event-info">
                 <div class="info-card">
                     <div class="info-icon">📅</div>
@@ -227,6 +189,7 @@
                     <a href="https://maps.google.com" target="_blank" class="map-link">Ver en Google Maps →</a>
                 </div>
             </div>
+
             <div class="message-box">
                 <p class="message-text">
                     "La fidelidad a Dios comienza en lo poco"
@@ -237,19 +200,31 @@
                     <span>🌸</span>
                 </div>
             </div>
+
+            <div class="scroll-hint">↓</div>
         </div>
     </section>
 
-    <!-- ===== SECCIÓN 5: RSVP ===== -->
-    <section class="section rsvp-section" id="rsvp">
-        <div class="container">
+    <!-- ===== SECCIÓN 5: RSVP (pantalla completa) ===== -->
+    <section class="section fullscreen rsvp-section" id="seccion5">
+        <div class="section-content">
+            <div class="separador-top">
+                <span>🦋</span>
+                <span>🌿</span>
+                <span>🦋</span>
+            </div>
+
             <h2 class="section-title">💌 Confirma tu asistencia</h2>
+
             <p class="rsvp-text">Confirma antes del <strong>01 de noviembre</strong></p>
+
             <button id="btnRSVP" class="rsvp-button">
                 <span>Confirmar Asistencia</span>
                 <span class="button-icon">🌿</span>
             </button>
+
             <p class="rsvp-note">¡Tu presencia es importante para nosotros!</p>
+
             <div class="mariposas-rsvp">
                 <span>🌿</span>
                 <span>🦋</span>
@@ -257,21 +232,13 @@
                 <span>🦋</span>
                 <span>🌿</span>
             </div>
+
+            <div class="footer-rsvp">
+                <p>Con mucho amor, Alejandro & Paula</p>
+                <p class="footer-note">#AlejandroYPaula2026</p>
+            </div>
         </div>
     </section>
-
-    <!-- ===== PIE DE PÁGINA ===== -->
-    <footer class="footer">
-        <div class="footer-mariposas">
-            <span>🌿</span>
-            <span>🦋</span>
-            <span>🌸</span>
-            <span>🦋</span>
-            <span>🌿</span>
-        </div>
-        <p>Con mucho amor, Alejandro & Paula</p>
-        <p class="footer-note">#AlejandroYPaula2026</p>
-    </footer>
 
     <!-- ===== MODAL RSVP ===== -->
     <div id="rsvpModal" class="modal">
