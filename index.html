@@ -15,6 +15,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+        <!-- ===== REPRODUCTOR DE MÚSICA (Autoplay con control) ===== -->
+    <audio id="musicaFondo" loop preload="auto" muted>
+        <source src="assets/musica/cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <button id="btnMusica" class="musica-btn" aria-label="Controlar música">
+        <span id="iconoMusica">🔇</span>
+    </button>
     <!-- ===== MARIPOSAS FLOTANTES (más pequeñas y en bordes) ===== -->
     <div class="butterfly butterfly-1">🦋</div>
     <div class="butterfly butterfly-2">🦋</div>

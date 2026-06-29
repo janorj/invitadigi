@@ -121,3 +121,97 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 });
+// ===== REPRODUCTOR DE MÚSICA (AUTOPLAY + CONTROL) =====
+const audio = document.getElementById('musicaFondo');
+const btnMusica = document.getElementById('btnMusica');
+const iconoMusica = document.getElementById('iconoMusica');
+
+let musicaIniciada = false;
+let usuarioInteractuo = false;
+
+// Función para iniciar la música
+function iniciarMusica() {
+    if (musicaIniciada) return;
+    
+    // Quitar el mute y subir volumen
+    audio.muted = false;
+    audio.volume = 0.8;
+    
+    audio.play().then(() => {
+        musicaIniciada = true;
+        usuarioInteractuo = true;
+        btnMusica.classList.add('sonando');
+        iconoMusica.textContent = '🔊';
+        console.log('🎵 Música iniciada');
+    }).catch(error => {
+        console.log('Autoplay bloqueado, esperando interacción:', error);
+        // Mostramos el icono de "play" para que el usuario sepa que debe tocar
+        iconoMusica.textContent = '▶️';
+    });
+}
+
+// Función para pausar/reanudar
+function toggleMusica() {
+    if (!musicaIniciada) {
+        // Si no ha empezado, intentamos iniciarla
+        iniciarMusica();
+        return;
+    }
+    
+    if (audio.paused) {
+        audio.play().then(() => {
+            btnMusica.classList.add('sonando');
+            iconoMusica.textContent = '🔊';
+        }).catch(() => {
+            iconoMusica.textContent = '🔇';
+        });
+    } else {
+        audio.pause();
+        btnMusica.classList.remove('sonando');
+        iconoMusica.textContent = '🔇';
+    }
+}
+
+// ===== ESTRATEGIA DE AUTOPLAY =====
+
+// 1. Intentar reproducir al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar el audio
+    audio.load();
+    
+    // Pequeño retraso para que el navegador procese todo
+    setTimeout(() => {
+        iniciarMusica();
+    }, 500);
+});
+
+// 2. Si el autoplay falla, esperar al primer toque en cualquier parte
+document.addEventListener('click', function primerClick() {
+    if (!usuarioInteractuo) {
+        iniciarMusica();
+        // Remover el listener después de la primera interacción
+        document.removeEventListener('click', primerClick);
+    }
+}, { once: true });
+
+// También capturar touch (para móviles)
+document.addEventListener('touchstart', function primerToque() {
+    if (!usuarioInteractuo) {
+        iniciarMusica();
+        document.removeEventListener('touchstart', primerToque);
+    }
+}, { once: true });
+
+// 3. Evento del botón de música
+btnMusica.addEventListener('click', function(e) {
+    e.stopPropagation(); // Evitar que el click del botón dispare el autoplay
+    toggleMusica();
+});
+
+// ===== GUARDAR ESTADO (Opcional) =====
+// Guardar si la música estaba sonando al salir de la página
+window.addEventListener('beforeunload', function() {
+    if (!audio.paused) {
+        audio.pause();
+    }
+});
