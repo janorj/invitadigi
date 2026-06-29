@@ -72,7 +72,7 @@ form.addEventListener('submit', function(e) {
         return;
     }
 
-    const mensaje = `🦋 *Confirmación de asistencia* 🦋%0A%0A` +
+    const mensaje = `🌿 *Confirmación de asistencia* 🌿%0A%0A` +
         `👤 *Nombre:* ${nombre}%0A` +
         `📱 *Teléfono:* ${telefono || 'No especificado'}%0A` +
         `👥 *Acompañantes:* ${invitados}%0A` +
@@ -84,9 +84,6 @@ form.addEventListener('submit', function(e) {
 
     form.style.display = 'none';
     successDiv.style.display = 'block';
-
-    // Opcional: abrir WhatsApp (descomentar para que se abra automáticamente)
-    // window.open(url, '_blank');
 
     localStorage.setItem('rsvp_enviado', 'true');
 });
@@ -105,7 +102,6 @@ function checkRsvpDeadline() {
 checkRsvpDeadline();
 
 // ===== EFECTO DE APARICIÓN AL HACER SCROLL =====
-// (Opcional: para animar elementos al hacer scroll)
 document.addEventListener('DOMContentLoaded', function() {
     const items = document.querySelectorAll('.schedule-item, .info-card, .hotel-card');
     const observer = new IntersectionObserver((entries) => {

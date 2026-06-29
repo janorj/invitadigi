@@ -3,46 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>🦋 Alejandro & Paula - Nuestra boda Bellas</title>
+    <title>🌿 Alejandro & Paula - Nuestra Boda</title>
     
-    <!-- Meta tags para compartir en WhatsApp -->
-    <meta property="og:title" content="🦋 Alejandro & Paula - ¡Nos Casamos!" />
+    <meta property="og:title" content="🌿 Alejandro & Paula - ¡Nos Casamos!" />
     <meta property="og:description" content="5 de diciembre de 2026 - Te esperamos para celebrar nuestro amor" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://invitacion.pages.dev" />
-    <meta property="og:image" content="https://invitacion.pages.dev/assets/img/foto-pareja.jpg" />
+    <meta property="og:url" content="https://invitadigi.netlify.app" />
+    <meta property="og:image" content="https://invitadigi.netlify.app/assets/img/foto-pareja.jpg" />
     
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Mariposas flotantes -->
-    <div class="butterfly butterfly-1">🦋</div>
-    <div class="butterfly butterfly-2">🦋</div>
-    <div class="butterfly butterfly-3">🦋</div>
-
-    <!-- ===== SECCIÓN 1: PORTADA ===== -->
+    <!-- ===== SECCIÓN 1: PORTADA BOHO ===== -->
     <section class="section portada" id="inicio">
+        <!-- Decoración floral SVG -->
+        <div class="floral-decoration-top">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20,30 Q40,10 60,30 Q80,50 100,30 Q120,10 140,30 Q160,50 180,30" 
+                      stroke="#D4A88A" stroke-width="1.5" fill="none"/>
+                <circle cx="40" cy="20" r="4" fill="#F5D5E0"/>
+                <circle cx="100" cy="15" r="5" fill="#E8A87C"/>
+                <circle cx="160" cy="20" r="4" fill="#A8C4A0"/>
+                <circle cx="70" cy="28" r="3" fill="#8FC1B5"/>
+                <circle cx="130" cy="28" r="3" fill="#F5D5E0"/>
+            </svg>
+        </div>
+
         <div class="portada-content">
             <div class="foto-container">
-                <!-- AÑADE AQUÍ TU FOTO DE PAREJA -->
                 <div class="foto-placeholder">
-                    <span>📸</span>
-                    <p>Vuestra foto aquíxxx</p>
+                    <span>🌿</span>
+                    <p>Vuestra foto aquí</p>
                 </div>
-                <!-- 
-                Cuando tengas la foto, descomenta esta línea y borra el div de arriba:
-                <img src="assets/img/foto-pareja.jpg" alt="Alejandro y Paula" class="foto-pareja">
-                -->
             </div>
+            
             <div class="portada-texto">
-                <p class="subtitulo">¡Nos casamos!</p>
+                <p class="bendicion">✧ Con la bendición de Dios ✧</p>
                 <h1 class="titulo">Alejandro <span class="ampersand">&amp;</span> Paula</h1>
+                <div class="divider">
+                    <span class="line"></span>
+                    <span class="diamond">✦</span>
+                    <span class="line"></span>
+                </div>
                 <p class="fecha">5 de Diciembre de 2026</p>
-                <div class="divider">🦋</div>
                 <p class="invitacion-texto">Te esperamos para celebrar juntos<br>este día tan especial</p>
             </div>
         </div>
+
+        <!-- Ramo de flores en la parte inferior -->
+        <div class="floral-decoration-bottom">
+            <svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+                <!-- Hojas verdes -->
+                <ellipse cx="60" cy="60" rx="25" ry="12" fill="#A8C4A0" opacity="0.7"/>
+                <ellipse cx="150" cy="65" rx="30" ry="14" fill="#4A7C59" opacity="0.5"/>
+                <ellipse cx="240" cy="58" rx="25" ry="12" fill="#A8C4A0" opacity="0.7"/>
+                <!-- Flores rosadas -->
+                <circle cx="80" cy="50" r="12" fill="#F5D5E0" opacity="0.8"/>
+                <circle cx="130" cy="45" r="10" fill="#E8A87C" opacity="0.8"/>
+                <circle cx="180" cy="48" r="14" fill="#F5D5E0" opacity="0.8"/>
+                <circle cx="220" cy="52" r="10" fill="#8FC1B5" opacity="0.7"/>
+                <!-- Detalles de flores -->
+                <circle cx="80" cy="50" r="5" fill="#D4A88A" opacity="0.6"/>
+                <circle cx="130" cy="45" r="4" fill="#D4A88A" opacity="0.6"/>
+                <circle cx="180" cy="48" r="6" fill="#D4A88A" opacity="0.6"/>
+                <circle cx="220" cy="52" r="4" fill="#D4A88A" opacity="0.6"/>
+            </svg>
+        </div>
+        
         <div class="scroll-indicator">↓</div>
     </section>
 
@@ -156,7 +184,7 @@
             <p class="rsvp-text">Cuéntanos si podrás acompañarnos</p>
             <button id="btnRSVP" class="rsvp-button">
                 <span>Confirmar Asistencia</span>
-                <span class="button-icon">🦋</span>
+                <span class="button-icon">🌿</span>
             </button>
             <p class="rsvp-note">Confirma antes del <strong>2 de noviembre</strong></p>
         </div>
