@@ -15,6 +15,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+        <!-- ===== ANIMACIÓN DE SOBRE ===== -->
+    <div id="sobreContainer" class="sobre-container">
+        <div class="sobre-wrapper">
+            <div class="sobre">
+                <div class="sobre-tapa"></div>
+                <div class="sobre-cuerpo">
+                    <div class="sobre-corazon">🦋</div>
+                    <p class="sobre-texto">Abre nuestra invitación</p>
+                </div>
+                <div class="sobre-sello"></div>
+            </div>
+            <div class="sobre-sombra"></div>
+        </div>
+        <p class="sobre-instruccion">Toca para abrir</p>
+    </div>
+
+    <!-- ===== REPRODUCTOR DE MÚSICA (oculto) ===== -->
+    <audio id="musicaFondo" loop preload="auto">
+        <source src="assets/musica/cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- ===== BOTÓN DE PAUSA (visible solo después de abrir) ===== -->
+    <button id="btnMusica" class="musica-btn oculto" aria-label="Controlar música">
+        <span id="iconoMusica">🔊</span>
+    </button>
+    
         <!-- ===== REPRODUCTOR DE MÚSICA (Autoplay con control) ===== -->
     <audio id="musicaFondo" loop preload="auto" muted>
         <source src="assets/musica/LAVA - español latino con letra - Roberto Rubio & Berlin Jara.mp3" type="audio/mpeg">

@@ -29,7 +29,110 @@ function actualizarContador() {
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-// ===== MODAL RSVP =====
+// ============================================================
+// ===== SOBRE + MÚSICA (NUEVA LÓGICA) =====
+// ============================================================
+
+const sobreContainer = document.getElementById('sobreContainer');
+const sobreWrapper = document.querySelector('.sobre-wrapper');
+const audio = document.getElementById('musicaFondo');
+const btnMusica = document.getElementById('btnMusica');
+const iconoMusica = document.getElementById('iconoMusica');
+
+let musicaIniciada = false;
+let sobreAbierto = false;
+
+// Función para iniciar la música
+function iniciarMusica() {
+    if (musicaIniciada) return;
+    
+    audio.volume = 0.8;
+    audio.play().then(() => {
+        musicaIniciada = true;
+        btnMusica.classList.add('sonando');
+        iconoMusica.textContent = '🔊';
+        btnMusica.classList.add('visible');
+        console.log('🎵 Música iniciada');
+    }).catch(error => {
+        console.log('Error al reproducir:', error);
+        // Si falla, intentamos de nuevo con la interacción del usuario
+        iconoMusica.textContent = '🎵';
+    });
+}
+
+// Función para pausar/reanudar
+function toggleMusica(e) {
+    if (e) e.stopPropagation();
+    
+    if (!musicaIniciada) {
+        iniciarMusica();
+        return;
+    }
+    
+    if (audio.paused) {
+        audio.play().then(() => {
+            btnMusica.classList.add('sonando');
+            iconoMusica.textContent = '🔊';
+        }).catch(() => {
+            iconoMusica.textContent = '🔇';
+        });
+    } else {
+        audio.pause();
+        btnMusica.classList.remove('sonando');
+        iconoMusica.textContent = '🔇';
+    }
+}
+
+// ===== ABRIR EL SOBRE =====
+function abrirSobre() {
+    if (sobreAbierto) return;
+    sobreAbierto = true;
+    
+    // 1. Animación del sobre
+    sobreWrapper.classList.add('abierto');
+    
+    // 2. Iniciar la música
+    iniciarMusica();
+    
+    // 3. Mostrar el botón de pausa
+    btnMusica.classList.add('visible');
+    
+    // 4. Desvanecer el contenedor del sobre
+    setTimeout(() => {
+        sobreContainer.classList.add('abierto');
+    }, 800);
+    
+    // 5. Mostrar el contenido (las secciones ya están visibles)
+    document.body.style.overflow = 'auto';
+}
+
+// ===== EVENTOS =====
+
+// Clic en el sobre para abrirlo
+sobreWrapper.addEventListener('click', abrirSobre);
+
+// Touch en el sobre (para móviles)
+sobreWrapper.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    abrirSobre();
+});
+
+// Clic en el botón de música
+btnMusica.addEventListener('click', toggleMusica);
+
+// Tecla espacio para abrir (accesibilidad)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        if (!sobreAbierto) {
+            abrirSobre();
+        }
+    }
+});
+
+// ============================================================
+// ===== MODAL RSVP (sin cambios) =====
+// ============================================================
+
 const modal = document.getElementById('rsvpModal');
 const btnRSVP = document.getElementById('btnRSVP');
 const closeModal = document.getElementById('closeModal');
@@ -80,7 +183,6 @@ form.addEventListener('submit', function(e) {
         `📅 *Evento:* Boda Alejandro & Paula - 5 de diciembre de 2026%0A` +
         `📍 *Lugar:* Camino Tromen 3.5, Hijuela 22, Temuco`;
 
-    // ⚠️ ¡CAMBIAR! Pon tu número real con código de país (sin +):
     const url = `https://wa.me/34XXXXXXXXX?text=${mensaje}`;
 
     form.style.display = 'none';
@@ -104,6 +206,9 @@ checkRsvpDeadline();
 
 // ===== EFECTO DE APARICIÓN AL HACER SCROLL =====
 document.addEventListener('DOMContentLoaded', function() {
+    // Ocultar el scroll hasta que se abra el sobre
+    document.body.style.overflow = 'hidden';
+    
     const items = document.querySelectorAll('.schedule-item, .info-card');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -120,98 +225,4 @@ document.addEventListener('DOMContentLoaded', function() {
         item.style.transition = 'all 0.6s ease-out';
         observer.observe(item);
     });
-});
-// ===== REPRODUCTOR DE MÚSICA (AUTOPLAY + CONTROL) =====
-const audio = document.getElementById('musicaFondo');
-const btnMusica = document.getElementById('btnMusica');
-const iconoMusica = document.getElementById('iconoMusica');
-
-let musicaIniciada = false;
-let usuarioInteractuo = false;
-
-// Función para iniciar la música
-function iniciarMusica() {
-    if (musicaIniciada) return;
-    
-    // Quitar el mute y subir volumen
-    audio.muted = false;
-    audio.volume = 0.8;
-    
-    audio.play().then(() => {
-        musicaIniciada = true;
-        usuarioInteractuo = true;
-        btnMusica.classList.add('sonando');
-        iconoMusica.textContent = '🔊';
-        console.log('🎵 Música iniciada');
-    }).catch(error => {
-        console.log('Autoplay bloqueado, esperando interacción:', error);
-        // Mostramos el icono de "play" para que el usuario sepa que debe tocar
-        iconoMusica.textContent = '▶️';
-    });
-}
-
-// Función para pausar/reanudar
-function toggleMusica() {
-    if (!musicaIniciada) {
-        // Si no ha empezado, intentamos iniciarla
-        iniciarMusica();
-        return;
-    }
-    
-    if (audio.paused) {
-        audio.play().then(() => {
-            btnMusica.classList.add('sonando');
-            iconoMusica.textContent = '🔊';
-        }).catch(() => {
-            iconoMusica.textContent = '🔇';
-        });
-    } else {
-        audio.pause();
-        btnMusica.classList.remove('sonando');
-        iconoMusica.textContent = '🔇';
-    }
-}
-
-// ===== ESTRATEGIA DE AUTOPLAY =====
-
-// 1. Intentar reproducir al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Cargar el audio
-    audio.load();
-    
-    // Pequeño retraso para que el navegador procese todo
-    setTimeout(() => {
-        iniciarMusica();
-    }, 500);
-});
-
-// 2. Si el autoplay falla, esperar al primer toque en cualquier parte
-document.addEventListener('click', function primerClick() {
-    if (!usuarioInteractuo) {
-        iniciarMusica();
-        // Remover el listener después de la primera interacción
-        document.removeEventListener('click', primerClick);
-    }
-}, { once: true });
-
-// También capturar touch (para móviles)
-document.addEventListener('touchstart', function primerToque() {
-    if (!usuarioInteractuo) {
-        iniciarMusica();
-        document.removeEventListener('touchstart', primerToque);
-    }
-}, { once: true });
-
-// 3. Evento del botón de música
-btnMusica.addEventListener('click', function(e) {
-    e.stopPropagation(); // Evitar que el click del botón dispare el autoplay
-    toggleMusica();
-});
-
-// ===== GUARDAR ESTADO (Opcional) =====
-// Guardar si la música estaba sonando al salir de la página
-window.addEventListener('beforeunload', function() {
-    if (!audio.paused) {
-        audio.pause();
-    }
 });
