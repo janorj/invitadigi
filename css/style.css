@@ -1490,3 +1490,68 @@ body {
         font-size: 1.4rem;
     }
 }
+/* ============================================================
+   SOBRE 3D CONTAINER
+   ============================================================ */
+
+#sobreContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: radial-gradient(ellipse at center, #1a3a2a 0%, #0d1f15 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+#sobreContainer.abierto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+#threeCanvas {
+    width: 100%;
+    height: 80%;
+    cursor: pointer;
+    max-width: 600px;
+    max-height: 500px;
+}
+
+#sobreContainer .sobre-instruccion {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 10px;
+    letter-spacing: 4px;
+    animation: pulseInstruccion 2s ease-in-out infinite;
+    font-weight: 300;
+}
+
+@keyframes pulseInstruccion {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: translateY(0); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: translateY(5px); 
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    #threeCanvas {
+        height: 70%;
+        max-height: 400px;
+    }
+    
+    #sobreContainer .sobre-instruccion {
+        font-size: 0.8rem;
+    }
+}
