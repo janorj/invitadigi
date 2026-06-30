@@ -1037,3 +1037,456 @@ body {
         margin-top: 6px;
     }
 }
+
+/* ============================================================
+   SOBRE SOPHISTICATED - VERDE CON SELLO MARIPOSA
+   ============================================================ */
+
+.sobre-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: radial-gradient(ellipse at center, #E8F0E0 0%, #C5D5B5 50%, #A8BFA0 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.sobre-container.abierto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+.sobre-wrapper {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    perspective: 800px;
+    cursor: pointer;
+}
+
+.sobre-wrapper:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.sobre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sobre-wrapper.abierto .sobre {
+    transform: rotateX(8deg) translateY(-15px);
+}
+
+.sobre-wrapper.abierto .sobre-tapa {
+    transform: rotateX(180deg) translateY(0);
+}
+
+.sobre-tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(180deg, #3A7D5A 0%, #2D6A4F 40%, #1E4D3A 100%);
+    border: 3px solid #1E4D3A;
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    transform-origin: top center;
+    transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: rotateX(0deg);
+    backface-visibility: hidden;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.sobre-tapa::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px 10px 0 0;
+    pointer-events: none;
+}
+
+.tapa-decoracion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 255, 255, 0.03) 15px,
+            rgba(255, 255, 255, 0.03) 16px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 255, 255, 0.03) 15px,
+            rgba(255, 255, 255, 0.03) 16px
+        );
+    pointer-events: none;
+}
+
+.sobre-tapa::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 25px;
+    background: linear-gradient(180deg, #2D6A4F 0%, #3A7D5A 100%);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    border-left: 3px solid #1E4D3A;
+    border-right: 3px solid #1E4D3A;
+    border-bottom: 3px solid #1E4D3A;
+    border-radius: 0 0 4px 4px;
+}
+
+.sobre-cuerpo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 82%;
+    background: linear-gradient(180deg, #F5F0E8 0%, #EDE5DA 50%, #E5DDD0 100%);
+    border: 3px solid #1E4D3A;
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        inset 0 2px 20px rgba(255, 255, 255, 0.3);
+    padding: 20px;
+}
+
+.borde-ornamental {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 2px solid rgba(45, 106, 79, 0.12);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.borde-ornamental::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid rgba(45, 106, 79, 0.06);
+    border-radius: 4px;
+}
+
+.sobre-texto-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    z-index: 2;
+    position: relative;
+}
+
+.texto-linea {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #2D3A2D;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.texto-linea.titulo-invitacion {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1E4D3A;
+    letter-spacing: 4px;
+    opacity: 1;
+    margin-top: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.decoracion-inferior {
+    margin-top: 8px;
+    opacity: 0.3;
+}
+
+.deco-linea {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    color: #2D6A4F;
+    letter-spacing: 4px;
+}
+
+.sobre-sello {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulseSello 2s ease-in-out infinite;
+}
+
+.sello-mariposa {
+    font-size: 2.2rem;
+    color: #2D6A4F;
+    animation: floatSelloMariposa 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(45, 106, 79, 0.2));
+    position: relative;
+    z-index: 2;
+}
+
+.sello-anillo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(45, 106, 79, 0.25);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(45, 106, 79, 0.05) 70%);
+    box-shadow: 0 0 30px rgba(45, 106, 79, 0.1);
+    animation: anilloPulso 2.5s ease-in-out infinite;
+}
+
+@keyframes anilloPulso {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.2;
+    }
+}
+
+@keyframes floatSelloMariposa {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(3deg);
+    }
+}
+
+@keyframes pulseSello {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+.esquina {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(45, 106, 79, 0.15);
+    border-style: solid;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.esquina-tl {
+    top: 8px;
+    left: 8px;
+    border-width: 3px 0 0 3px;
+    border-radius: 4px 0 0 0;
+}
+
+.esquina-tr {
+    top: 8px;
+    right: 8px;
+    border-width: 3px 3px 0 0;
+    border-radius: 0 4px 0 0;
+}
+
+.esquina-bl {
+    bottom: 8px;
+    left: 8px;
+    border-width: 0 0 3px 3px;
+    border-radius: 0 0 0 4px;
+}
+
+.esquina-br {
+    bottom: 8px;
+    right: 8px;
+    border-width: 0 3px 3px 0;
+    border-radius: 0 0 4px 0;
+}
+
+.sobre-sombra {
+    position: absolute;
+    bottom: -30px;
+    left: 10%;
+    width: 80%;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(12px);
+    transition: all 0.8s ease;
+}
+
+.sobre-wrapper.abierto .sobre-sombra {
+    width: 60%;
+    opacity: 0.4;
+    transform: translateY(-10px);
+}
+
+.sobre-instruccion {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(45, 58, 45, 0.5);
+    margin-top: 35px;
+    letter-spacing: 3px;
+    animation: pulseInstruccion 2s ease-in-out infinite;
+    font-weight: 300;
+}
+
+@keyframes pulseInstruccion {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: translateY(0); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: translateY(5px); 
+    }
+}
+
+.mariposa-voladora {
+    position: fixed;
+    font-size: 1.8rem;
+    pointer-events: none;
+    z-index: 15;
+    opacity: 0;
+    transition: none;
+}
+
+.mariposa-voladora.animando {
+    animation: vueloMariposa 3s ease-in-out forwards;
+}
+
+@keyframes vueloMariposa {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg) translate(0, 0);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1) rotate(20deg) translate(30px, -40px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(-10deg) translate(80px, -100px);
+    }
+    80% {
+        opacity: 0.8;
+        transform: scale(0.9) rotate(15deg) translate(140px, -60px);
+    }
+    100% {
+        opacity: 0.15;
+        transform: scale(0.7) rotate(5deg) translate(200px, 0px);
+    }
+}
+
+.mariposa-voladora.ruta-1 { animation-duration: 3.5s; }
+.mariposa-voladora.ruta-2 { animation-duration: 4s; }
+.mariposa-voladora.ruta-3 { animation-duration: 3s; }
+.mariposa-voladora.ruta-4 { animation-duration: 4.5s; }
+.mariposa-voladora.ruta-5 { animation-duration: 3.8s; }
+.mariposa-voladora.ruta-6 { animation-duration: 4.2s; }
+.mariposa-voladora.ruta-7 { animation-duration: 3.2s; }
+.mariposa-voladora.ruta-8 { animation-duration: 4.8s; }
+
+@media (max-width: 480px) {
+    .sobre-wrapper {
+        width: 260px;
+        height: 180px;
+    }
+    
+    .texto-linea {
+        font-size: 0.6rem;
+    }
+    
+    .texto-linea.titulo-invitacion {
+        font-size: 1.3rem;
+    }
+    
+    .sobre-sello {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .sello-mariposa {
+        font-size: 1.8rem;
+    }
+    
+    .sobre-instruccion {
+        font-size: 0.7rem;
+        margin-top: 25px;
+    }
+    
+    .esquina {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .sobre-wrapper {
+        width: 220px;
+        height: 155px;
+    }
+    
+    .texto-linea {
+        font-size: 0.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .texto-linea.titulo-invitacion {
+        font-size: 1.1rem;
+    }
+    
+    .sobre-sello {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .sello-mariposa {
+        font-size: 1.4rem;
+    }
+}
