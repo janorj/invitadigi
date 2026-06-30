@@ -2,51 +2,26 @@
 const FECHA_BODA = new Date('Dec 5, 2026 14:30:00').getTime();
 const FECHA_LIMITE_RSVP = new Date('Nov 1, 2026 23:59:59').getTime();
 
-// ===== CONTADOR =====
-function actualizarContador() {
-    const ahora = new Date().getTime();
-    const distancia = FECHA_BODA - ahora;
-
-    if (distancia < 0) {
-        document.getElementById('dias').textContent = '00';
-        document.getElementById('horas').textContent = '00';
-        document.getElementById('minutos').textContent = '00';
-        document.getElementById('segundos').textContent = '00';
-        return;
-    }
-
-    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-    document.getElementById('dias').textContent = String(dias).padStart(2, '0');
-    document.getElementById('horas').textContent = String(horas).padStart(2, '0');
-    document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
-    document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
-}
-
-setInterval(actualizarContador, 1000);
-actualizarContador();
-
 // ============================================================
-// ===== SOBRE + MÚSICA (CORREGIDO PARA MÓVILES) =====
+// ===== SOBRE + MÚSICA + MARIPOSAS =====
 // ============================================================
 
 const sobreContainer = document.getElementById('sobreContainer');
-const sobreWrapper = document.querySelector('.sobre-wrapper');
+const sobreWrapper = document.getElementById('sobreWrapper');
 const audio = document.getElementById('musicaFondo');
 const btnMusica = document.getElementById('btnMusica');
 const iconoMusica = document.getElementById('iconoMusica');
+const menuNavegacion = document.getElementById('menuNavegacion');
+const mariposaCentral = document.getElementById('mariposaCentral');
 
 let musicaIniciada = false;
 let sobreAbierto = false;
 
-// Función para iniciar la música (sin retraso)
+// Función para iniciar la música
 function iniciarMusica() {
     if (musicaIniciada) return;
     
-    audio.volume = 0.8;
+    audio.volume = 0.7;
     audio.play().then(() => {
         musicaIniciada = true;
         btnMusica.classList.add('sonando');
@@ -55,7 +30,6 @@ function iniciarMusica() {
         console.log('🎵 Música iniciada correctamente');
     }).catch(error => {
         console.log('Error al reproducir:', error);
-        // Si falla, mostramos el botón para que el usuario pueda iniciar manualmente
         iconoMusica.textContent = '▶️';
         btnMusica.classList.add('visible');
     });
@@ -84,9 +58,65 @@ function toggleMusica(e) {
     }
 }
 
-// ===== ABRIR EL SOBRE (CORREGIDO PARA MÓVILES) =====
+// ===== CREAR MARIPOSAS VOLANDO =====
+function crearMariposasVolando() {
+    const mariposas = document.querySelectorAll('.butterfly');
+    const contenedor = document.body;
+    
+    // Crear mariposas adicionales que vuelan desde el sobre
+    for (let i = 0; i < 8; i++) {
+        const mariposa = document.createElement('div');
+        mariposa.className = 'butterfly voladora';
+        mariposa.textContent = '🦋';
+        mariposa.style.position = 'fixed';
+        mariposa.style.zIndex = '10';
+        mariposa.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
+        mariposa.style.pointerEvents = 'none';
+        mariposa.style.opacity = '0';
+        
+        // Posición inicial desde el centro
+        const x = window.innerWidth / 2 + (Math.random() - 0.5) * 100;
+        const y = window.innerHeight / 2 + (Math.random() - 0.5) * 80;
+        mariposa.style.left = x + 'px';
+        mariposa.style.top = y + 'px';
+        
+        contenedor.appendChild(mariposa);
+        
+        // Animar hacia una posición aleatoria
+        const targetX = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+        const targetY = Math.random() * window.innerHeight * 0.8 + window.innerHeight * 0.1;
+        const duration = 2000 + Math.random() * 2000;
+        const delay = i * 200;
+        
+        mariposa.animate([
+            { opacity: 0, transform: 'scale(0.5) rotate(0deg)' },
+            { opacity: 0.8, transform: `scale(1) rotate(${Math.random() * 360}deg)` },
+            { opacity: 0.3, transform: `scale(0.8) rotate(${Math.random() * 720}deg)` }
+        ], {
+            duration: duration,
+            delay: delay,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+        });
+        
+        // Mover a la posición final
+        setTimeout(() => {
+            mariposa.style.transition = `all ${2 + Math.random() * 3}s ease-in-out`;
+            mariposa.style.left = targetX + 'px';
+            mariposa.style.top = targetY + 'px';
+            mariposa.style.opacity = '0.15';
+            
+            // Hacer que flote después de llegar
+            setTimeout(() => {
+                mariposa.style.animation = `floatButterfly ${15 + Math.random() * 10}s infinite ease-in-out`;
+                mariposa.style.animationDelay = (Math.random() * 5) + 's';
+            }, 3000);
+        }, duration + delay);
+    }
+}
+
+// ===== ABRIR EL SOBRE =====
 function abrirSobre(e) {
-    // Prevenir comportamiento por defecto
     if (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -95,10 +125,9 @@ function abrirSobre(e) {
     if (sobreAbierto) return;
     sobreAbierto = true;
     
-    // 1. INICIAR LA MÚSICA INMEDIATAMENTE (sin ningún retraso)
-    // Este es el cambio clave para que funcione en móviles
+    // 1. INICIAR LA MÚSICA
     if (!musicaIniciada) {
-        audio.volume = 0.8;
+        audio.volume = 0.7;
         audio.play().then(() => {
             musicaIniciada = true;
             btnMusica.classList.add('sonando');
@@ -106,42 +135,65 @@ function abrirSobre(e) {
             btnMusica.classList.add('visible');
             console.log('🎵 Música iniciada desde el sobre');
         }).catch(error => {
-            console.log('Error al iniciar música en móvil:', error);
+            console.log('Error al iniciar música:', error);
             iconoMusica.textContent = '▶️';
             btnMusica.classList.add('visible');
         });
     }
     
-    // 2. ANIMACIÓN del sobre (se ejecuta al mismo tiempo que la música)
+    // 2. ANIMACIÓN del sobre
     sobreWrapper.classList.add('abierto');
-    
-    // 3. Mostrar el botón de pausa inmediatamente
     btnMusica.classList.add('visible');
     
-    // 4. Desvanecer el contenedor del sobre (con un pequeño retraso para ver la animación)
+    // 3. Desvanecer el sobre
     setTimeout(() => {
         sobreContainer.classList.add('abierto');
     }, 800);
     
-    // 5. Desbloquear el scroll después de que el sobre se haya desvanecido
+    // 4. Mostrar el menú y elementos
     setTimeout(() => {
+        menuNavegacion.style.display = 'flex';
         document.body.style.overflow = 'auto';
+        
+        // Mostrar mariposa central con animación
+        mariposaCentral.classList.add('visible');
+        
+        // Crear mariposas volando
+        crearMariposasVolando();
+        
+        // Activar animaciones de scroll
+        activarAnimacionesScroll();
     }, 900);
 }
 
-// ===== EVENTOS (Con soporte para móviles y PC) =====
+// ===== ACTIVAR ANIMACIONES DE SCROLL =====
+function activarAnimacionesScroll() {
+    const items = document.querySelectorAll('.schedule-item, .info-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    items.forEach(item => {
+        observer.observe(item);
+    });
+}
 
-// Para clic en PC
+// ===== EVENTOS =====
+// Clic en el sobre
 sobreWrapper.addEventListener('click', abrirSobre);
 
-// Para toque en móviles (evita el doble disparo)
+// Touch para móviles
 sobreWrapper.addEventListener('touchstart', function(e) {
-    // Prevenir el comportamiento por defecto para que no interfiera
     e.preventDefault();
     abrirSobre(e);
 }, { passive: false });
 
-// Para teclado (accesibilidad)
+// Teclado
 document.addEventListener('keydown', function(e) {
     if ((e.key === 'Enter' || e.key === ' ') && !sobreAbierto) {
         e.preventDefault();
@@ -149,8 +201,38 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Clic en el botón de música
+// Botón de música
 btnMusica.addEventListener('click', toggleMusica);
+
+// ============================================================
+// ===== CONTADOR =====
+// ============================================================
+
+function actualizarContador() {
+    const ahora = new Date().getTime();
+    const distancia = FECHA_BODA - ahora;
+
+    if (distancia < 0) {
+        document.getElementById('dias').textContent = '00';
+        document.getElementById('horas').textContent = '00';
+        document.getElementById('minutos').textContent = '00';
+        document.getElementById('segundos').textContent = '00';
+        return;
+    }
+
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+    document.getElementById('dias').textContent = String(dias).padStart(2, '0');
+    document.getElementById('horas').textContent = String(horas).padStart(2, '0');
+    document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+    document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+}
+
+setInterval(actualizarContador, 1000);
+actualizarContador();
 
 // ============================================================
 // ===== MODAL RSVP =====
@@ -209,6 +291,9 @@ form.addEventListener('submit', function(e) {
     // ⚠️ ¡CAMBIAR! Pon tu número real con código de país (sin +):
     const url = `https://wa.me/34XXXXXXXXX?text=${mensaje}`;
 
+    // Abrir WhatsApp
+    window.open(url, '_blank');
+
     form.style.display = 'none';
     successDiv.style.display = 'block';
 
@@ -232,21 +317,4 @@ checkRsvpDeadline();
 document.addEventListener('DOMContentLoaded', function() {
     // Ocultar el scroll hasta que se abra el sobre
     document.body.style.overflow = 'hidden';
-    
-    const items = document.querySelectorAll('.schedule-item, .info-card');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    items.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = 'all 0.6s ease-out';
-        observer.observe(item);
-    });
 });

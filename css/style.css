@@ -14,9 +14,168 @@ body {
     background: #FEFCF8;
     color: #2D3A2D;
     overflow-x: hidden;
+    overflow: hidden; /* Oculto inicialmente hasta abrir el sobre */
 }
 
-/* ===== MARIPOSAS FLOTANTES (más pequeñas y en bordes) ===== */
+/* ===== SOBRE ===== */
+.sobre-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: linear-gradient(160deg, #FEFCF8 0%, #F5F0E8 40%, #E8F0E0 80%, #FEFCF8 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.sobre-container.abierto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+.sobre-wrapper {
+    position: relative;
+    width: 220px;
+    height: 150px;
+    perspective: 600px;
+    cursor: pointer;
+}
+
+.sobre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sobre-wrapper.abierto .sobre {
+    transform: rotateX(10deg) translateY(-10px);
+}
+
+.sobre-wrapper.abierto .sobre-tapa {
+    transform: rotateX(180deg) translateY(0);
+}
+
+.sobre-cuerpo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    background: #FFF9F0;
+    border: 3px solid #D4A88A;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.sobre-tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: #F5E8DC;
+    border: 3px solid #D4A88A;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: rotateX(0deg);
+    backface-visibility: hidden;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.sobre-tapa::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 20px;
+    background: #EDE0D4;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.sobre-sello {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    z-index: 5;
+    animation: pulseSello 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseSello {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.sobre-corazon {
+    font-size: 2.4rem;
+    animation: pulseCorazon 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseCorazon {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+.sobre-texto {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.65rem;
+    color: #8A7A7A;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin-top: -2px;
+}
+
+.sobre-sombra {
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 50%;
+    filter: blur(8px);
+    transition: all 0.6s ease;
+}
+
+.sobre-wrapper.abierto .sobre-sombra {
+    width: 60%;
+    opacity: 0.3;
+}
+
+.sobre-instruccion {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.75rem;
+    color: #8A7A7A;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    animation: pulseInstruccion 2s ease-in-out infinite;
+    font-weight: 300;
+}
+
+@keyframes pulseInstruccion {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(4px); }
+}
+
+/* ===== MARIPOSAS FLOTANTES ===== */
 .butterfly {
     position: fixed;
     font-size: 1.8rem;
@@ -24,12 +183,15 @@ body {
     animation: floatButterfly 20s infinite ease-in-out;
     pointer-events: none;
     z-index: 5;
+    transition: opacity 1s ease;
 }
 
 .butterfly-1 { top: 8%; left: 3%; animation-delay: 0s; font-size: 1.6rem; }
 .butterfly-2 { top: 15%; right: 4%; animation-delay: -5s; font-size: 1.4rem; }
 .butterfly-3 { bottom: 20%; left: 4%; animation-delay: -10s; font-size: 1.8rem; }
 .butterfly-4 { bottom: 25%; right: 3%; animation-delay: -15s; font-size: 1.5rem; }
+.butterfly-5 { top: 50%; left: 2%; animation-delay: -7s; font-size: 1.2rem; }
+.butterfly-6 { top: 40%; right: 2%; animation-delay: -12s; font-size: 1.3rem; }
 
 @keyframes floatButterfly {
     0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
@@ -67,12 +229,16 @@ body {
     letter-spacing: 0.3px;
 }
 
+.menu-item:hover {
+    background: rgba(82, 183, 136, 0.1);
+}
+
 .menu-item:active {
     background: #52B788;
     color: white;
 }
 
-/* ===== SECCIONES A PANTALLA COMPLETA ===== */
+/* ===== SECCIONES ===== */
 .section {
     position: relative;
     z-index: 1;
@@ -112,7 +278,7 @@ body {
     50% { transform: translateY(8px); opacity: 0.7; }
 }
 
-/* ===== SEPARADOR TOP ===== */
+/* ===== SEPARADORES ===== */
 .separador-top {
     display: flex;
     justify-content: center;
@@ -159,6 +325,14 @@ body {
     animation: floatButterfly 6s infinite ease-in-out;
     display: inline-block;
     color: #2D6A4F;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mariposa-central.visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .mariposas-titulo {
@@ -218,7 +392,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===== SECCIÓN 2: INFORMACIÓN DE LA BODA (NUEVA) ===== */
+/* ===== SECCIÓN 2: INFORMACIÓN DE LA BODA ===== */
 .info-boda-section {
     background: linear-gradient(160deg, #FEFCF8 0%, #F5F0E8 50%, #FEFCF8 100%);
 }
@@ -355,6 +529,14 @@ body {
     padding: 7px 10px;
     gap: 8px;
     border: 1.5px solid rgba(82, 183, 136, 0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.schedule-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .schedule-icon {
@@ -404,6 +586,14 @@ body {
     padding: 8px 4px;
     text-align: center;
     border: 1.5px solid rgba(82, 183, 136, 0.06);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.info-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-icon {
@@ -490,6 +680,11 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+}
+
+.rsvp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(82, 183, 136, 0.35);
 }
 
 .rsvp-button:active {
@@ -594,6 +789,10 @@ body {
     line-height: 1;
 }
 
+.close-modal:hover {
+    transform: scale(1.1);
+}
+
 .close-modal:active {
     transform: scale(0.8);
 }
@@ -662,6 +861,11 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
+.submit-rsvp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(82, 183, 136, 0.3);
+}
+
 .submit-rsvp:active {
     transform: scale(0.97);
 }
@@ -701,6 +905,67 @@ body {
     cursor: pointer;
     font-weight: 700;
     font-family: 'Quicksand', sans-serif;
+}
+
+.close-success:hover {
+    background: #2D6A4F;
+}
+
+/* ===== BOTÓN DE MÚSICA ===== */
+.musica-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    z-index: 100;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid rgba(45, 106, 79, 0.25);
+    background: rgba(254, 252, 248, 0.92);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    color: #2D6A4F;
+    padding: 0;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.musica-btn.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.musica-btn:hover {
+    transform: scale(1.05);
+}
+
+.musica-btn:active {
+    transform: scale(0.9);
+}
+
+.musica-btn.sonando {
+    border-color: #52B788;
+    background: rgba(82, 183, 136, 0.12);
+    box-shadow: 0 4px 20px rgba(82, 183, 136, 0.15);
+}
+
+.musica-btn.sonando #iconoMusica {
+    animation: vibrar 1.2s ease-in-out infinite;
+}
+
+@keyframes vibrar {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-3deg); }
+    75% { transform: scale(1.1) rotate(3deg); }
 }
 
 /* ===== RESPONSIVE ===== */
@@ -771,264 +1036,4 @@ body {
         font-size: 1.2rem;
         margin-top: 6px;
     }
-}
-/* ===== BOTÓN DE MÚSICA ===== */
-.musica-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 20px;
-    z-index: 100;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    border: 2px solid rgba(45, 106, 79, 0.25);
-    background: rgba(254, 252, 248, 0.92);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    color: #2D6A4F;
-    padding: 0;
-    line-height: 1;
-}
-
-.musica-btn:active {
-    transform: scale(0.9);
-}
-
-/* Estado cuando la música está sonando */
-.musica-btn.sonando {
-    border-color: #52B788;
-    background: rgba(82, 183, 136, 0.12);
-    box-shadow: 0 4px 20px rgba(82, 183, 136, 0.15);
-}
-
-/* Animación del icono cuando suena */
-.musica-btn.sonando #iconoMusica {
-    animation: vibrar 1.2s ease-in-out infinite;
-}
-
-@keyframes vibrar {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(-3deg); }
-    75% { transform: scale(1.1) rotate(3deg); }
-}
-/* ===== SOBRE ===== */
-.sobre-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    background: linear-gradient(160deg, #FEFCF8 0%, #F5F0E8 40%, #E8F0E0 80%, #FEFCF8 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.sobre-container.abierto {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
-}
-
-.sobre-wrapper {
-    position: relative;
-    width: 220px;
-    height: 150px;
-    perspective: 600px;
-    cursor: pointer;
-}
-
-.sobre {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Estado abierto */
-.sobre-wrapper.abierto .sobre {
-    transform: rotateX(10deg) translateY(-10px);
-}
-
-.sobre-wrapper.abierto .sobre-tapa {
-    transform: rotateX(180deg) translateY(0);
-}
-
-.sobre-cuerpo {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 85%;
-    background: #FFF9F0;
-    border: 3px solid #D4A88A;
-    border-radius: 0 0 12px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-}
-
-.sobre-tapa {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60%;
-    background: #F5E8DC;
-    border: 3px solid #D4A88A;
-    border-bottom: none;
-    border-radius: 12px 12px 0 0;
-    transform-origin: top center;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: rotateX(0deg);
-    backface-visibility: hidden;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
-}
-
-.sobre-tapa::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 20px;
-    background: #EDE0D4;
-    clip-path: polygon(50% 100%, 0 0, 100% 0);
-}
-
-.sobre-sello {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #E8C8A0, #D4A88A);
-    border-radius: 50%;
-    border: 2px solid #C49578;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    z-index: 5;
-    box-shadow: 0 2px 8px rgba(212, 168, 138, 0.2);
-}
-
-.sobre-corazon {
-    font-size: 2.4rem;
-    animation: pulseCorazon 1.5s ease-in-out infinite;
-}
-
-@keyframes pulseCorazon {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.15); opacity: 1; }
-}
-
-.sobre-texto {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.65rem;
-    color: #8A7A7A;
-    letter-spacing: 1px;
-    font-weight: 300;
-    margin-top: -2px;
-}
-
-.sobre-sombra {
-    position: absolute;
-    bottom: -20px;
-    left: 10%;
-    width: 80%;
-    height: 20px;
-    background: rgba(0, 0, 0, 0.04);
-    border-radius: 50%;
-    filter: blur(8px);
-    transition: all 0.6s ease;
-}
-
-.sobre-wrapper.abierto .sobre-sombra {
-    width: 60%;
-    opacity: 0.3;
-}
-
-.sobre-instruccion {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.75rem;
-    color: #8A7A7A;
-    margin-top: 30px;
-    letter-spacing: 2px;
-    animation: pulseInstruccion 2s ease-in-out infinite;
-    font-weight: 300;
-}
-
-@keyframes pulseInstruccion {
-    0%, 100% { opacity: 0.4; transform: translateY(0); }
-    50% { opacity: 0.8; transform: translateY(4px); }
-}
-
-/* ===== BOTÓN DE PAUSA (oculto inicialmente) ===== */
-.musica-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 20px;
-    z-index: 100;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    border: 2px solid rgba(45, 106, 79, 0.25);
-    background: rgba(254, 252, 248, 0.92);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    color: #2D6A4F;
-    padding: 0;
-    line-height: 1;
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-}
-
-.musica-btn.visible {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-.musica-btn:active {
-    transform: scale(0.9);
-}
-
-.musica-btn.sonando {
-    border-color: #52B788;
-    background: rgba(82, 183, 136, 0.12);
-    box-shadow: 0 4px 20px rgba(82, 183, 136, 0.15);
-}
-
-.musica-btn.sonando #iconoMusica {
-    animation: vibrar 1.2s ease-in-out infinite;
-}
-
-@keyframes vibrar {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(-3deg); }
-    75% { transform: scale(1.1) rotate(3deg); }
 }

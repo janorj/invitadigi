@@ -8,57 +8,50 @@
     <meta property="og:title" content="🌿 Alejandro & Paula - ¡Nos Casamos!" />
     <meta property="og:description" content="5 de diciembre de 2026 - Te esperamos para celebrar nuestro amor" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://invitadigi.netlify.app" />
-    <meta property="og:image" content="https://invitadigi.netlify.app/assets/img/foto-pareja.jpg" />
+    <meta property="og:url" content="https://tu-sitio.netlify.app" />
+    <meta property="og:image" content="https://tu-sitio.netlify.app/assets/img/foto-pareja.jpg" />
     
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- ===== ANIMACIÓN DE SOBRE ===== -->
+    <!-- ===== ANIMACIÓN DE SOBRE ===== -->
     <div id="sobreContainer" class="sobre-container">
-        <div class="sobre-wrapper">
+        <div class="sobre-wrapper" id="sobreWrapper">
             <div class="sobre">
                 <div class="sobre-tapa"></div>
                 <div class="sobre-cuerpo">
                     <div class="sobre-corazon">🦋</div>
                     <p class="sobre-texto">Abre nuestra invitación</p>
                 </div>
-                <div class="sobre-sello"></div>
+                <div class="sobre-sello">💌</div>
             </div>
             <div class="sobre-sombra"></div>
         </div>
-        <p class="sobre-instruccion">Toca para abrir</p>
+        <p class="sobre-instruccion">💫 Toca para abrir</p>
     </div>
 
-    <!-- ===== REPRODUCTOR DE MÚSICA (oculto) ===== -->
+    <!-- ===== REPRODUCTOR DE MÚSICA ===== -->
     <audio id="musicaFondo" loop preload="auto">
-        <source src="assets/musica/LAVA - español latino con letra - Roberto Rubio & Berlin Jara.mp3" type="audio/mpeg">
+        <source src="assets/musica/cancion.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- ===== BOTÓN DE PAUSA (visible solo después de abrir) ===== -->
-    <button id="btnMusica" class="musica-btn oculto" aria-label="Controlar música">
+    <!-- ===== BOTÓN DE MÚSICA ===== -->
+    <button id="btnMusica" class="musica-btn" aria-label="Controlar música">
         <span id="iconoMusica">🔊</span>
     </button>
 
-        <!-- ===== REPRODUCTOR DE MÚSICA (Autoplay con control) ===== -->
-    <audio id="musicaFondo" loop preload="auto" muted>
-        <source src="assets/musica/LAVA - español latino con letra - Roberto Rubio & Berlin Jara.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-    
-    <button id="btnMusica" class="musica-btn" aria-label="Controlar música">
-        <span id="iconoMusica">🔇</span>
-    </button>
-    <!-- ===== MARIPOSAS FLOTANTES (más pequeñas y en bordes) ===== -->
+    <!-- ===== MARIPOSAS FLOTANTES ===== -->
     <div class="butterfly butterfly-1">🦋</div>
     <div class="butterfly butterfly-2">🦋</div>
     <div class="butterfly butterfly-3">🦋</div>
     <div class="butterfly butterfly-4">🦋</div>
+    <div class="butterfly butterfly-5">🦋</div>
+    <div class="butterfly butterfly-6">🦋</div>
 
     <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
-    <nav class="menu">
+    <nav class="menu" id="menuNavegacion" style="display:none;">
         <a href="#seccion1" class="menu-item">🌿 Inicio</a>
         <a href="#seccion2" class="menu-item">💒 Boda</a>
         <a href="#seccion3" class="menu-item">⏳ Cuenta</a>
@@ -78,7 +71,7 @@
                 <span class="flor-rama">🌿</span>
             </div>
 
-            <div class="mariposa-central">🦋</div>
+            <div class="mariposa-central" id="mariposaCentral">🦋</div>
 
             <div class="texto-principal">
                 <p class="bendicion">✦ Con la bendición de Dios ✦</p>
@@ -103,7 +96,7 @@
         </div>
     </section>
 
-    <!-- ===== SECCIÓN 2: INFORMACIÓN DE LA BODA (NUEVA) ===== -->
+    <!-- ===== SECCIÓN 2: INFORMACIÓN DE LA BODA ===== -->
     <section class="section fullscreen info-boda-section" id="seccion2">
         <div class="section-content">
             <div class="separador-top">
