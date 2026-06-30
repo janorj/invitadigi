@@ -3,7 +3,7 @@ const FECHA_BODA = new Date('Dec 5, 2026 14:30:00').getTime();
 const FECHA_LIMITE_RSVP = new Date('Nov 1, 2026 23:59:59').getTime();
 
 // ============================================================
-// ===== SOBRE + MÚSICA + MARIPOSAS MEJORADO =====
+// SOBRE + MARIPOSAS VOLANDO
 // ============================================================
 
 const sobreContainer = document.getElementById('sobreContainer');
@@ -14,96 +14,52 @@ const iconoMusica = document.getElementById('iconoMusica');
 const menuNavegacion = document.getElementById('menuNavegacion');
 const mariposaCentral = document.getElementById('mariposaCentral');
 
-let musicaIniciada = false;
 let sobreAbierto = false;
+let musicaIniciada = false;
 
-// ===== CREAR MARIPOSAS VOLANDO DESDE EL SOBRE =====
+// ===== CREAR MARIPOSAS VOLANDO =====
 function crearMariposasVolando() {
-    const contenedor = document.body;
     const centroX = window.innerWidth / 2;
     const centroY = window.innerHeight / 2;
     
-    const mariposasConfig = [
-        { x: centroX - 40, y: centroY - 30, destinoX: '10%', destinoY: '15%', retraso: 0, duracion: 3.5 },
-        { x: centroX + 40, y: centroY - 20, destinoX: '85%', destinoY: '10%', retraso: 200, duracion: 4.0 },
-        { x: centroX - 60, y: centroY + 10, destinoX: '5%', destinoY: '40%', retraso: 400, duracion: 3.0 },
-        { x: centroX + 60, y: centroY + 20, destinoX: '90%', destinoY: '35%', retraso: 600, duracion: 4.5 },
-        { x: centroX - 20, y: centroY - 50, destinoX: '15%', destinoY: '65%', retraso: 300, duracion: 3.8 },
-        { x: centroX + 20, y: centroY - 40, destinoX: '80%', destinoY: '60%', retraso: 500, duracion: 4.2 },
-        { x: centroX - 80, y: centroY + 30, destinoX: '20%', destinoY: '85%', retraso: 700, duracion: 3.2 },
-        { x: centroX + 80, y: centroY + 40, destinoX: '75%', destinoY: '80%', retraso: 800, duracion: 4.8 },
-        { x: centroX, y: centroY - 60, destinoX: '50%', destinoY: '5%', retraso: 150, duracion: 3.6 },
-        { x: centroX, y: centroY + 50, destinoX: '50%', destinoY: '92%', retraso: 450, duracion: 3.9 }
+    const configs = [
+        { ruta: 1, delay: 0, x: centroX - 60, y: centroY - 40, size: 2.0 },
+        { ruta: 2, delay: 200, x: centroX + 60, y: centroY - 30, size: 1.8 },
+        { ruta: 3, delay: 400, x: centroX - 80, y: centroY + 20, size: 2.2 },
+        { ruta: 4, delay: 600, x: centroX + 80, y: centroY + 30, size: 1.6 },
+        { ruta: 5, delay: 150, x: centroX - 40, y: centroY - 60, size: 1.9 },
+        { ruta: 6, delay: 350, x: centroX + 40, y: centroY - 50, size: 2.1 },
+        { ruta: 7, delay: 550, x: centroX - 100, y: centroY + 40, size: 1.7 },
+        { ruta: 8, delay: 750, x: centroX + 100, y: centroY + 50, size: 2.3 },
+        { ruta: 1, delay: 100, x: centroX - 20, y: centroY - 80, size: 1.5 },
+        { ruta: 3, delay: 300, x: centroX + 20, y: centroY - 70, size: 2.4 },
+        { ruta: 5, delay: 500, x: centroX - 120, y: centroY + 60, size: 1.4 },
+        { ruta: 7, delay: 700, x: centroX + 120, y: centroY + 70, size: 2.5 },
     ];
     
-    mariposasConfig.forEach((config, index) => {
+    configs.forEach((config) => {
         const mariposa = document.createElement('div');
-        mariposa.className = `mariposa-voladora ruta-${(index % 4) + 1}`;
+        mariposa.className = `mariposa-voladora ruta-${config.ruta}`;
         mariposa.textContent = '🦋';
+        mariposa.style.position = 'fixed';
         mariposa.style.left = config.x + 'px';
         mariposa.style.top = config.y + 'px';
-        mariposa.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
-        mariposa.style.opacity = '0';
-        mariposa.style.transform = 'scale(0.3) rotate(0deg)';
-        mariposa.style.position = 'fixed';
-        mariposa.style.pointerEvents = 'none';
+        mariposa.style.fontSize = config.size + 'rem';
         mariposa.style.zIndex = '15';
+        mariposa.style.pointerEvents = 'none';
+        mariposa.style.opacity = '0';
         
-        contenedor.appendChild(mariposa);
+        document.body.appendChild(mariposa);
         
         setTimeout(() => {
-            mariposa.style.transition = `all ${config.duracion}s cubic-bezier(0.34, 1.56, 0.64, 1)`;
-            mariposa.style.opacity = '0.3';
-            mariposa.style.left = config.destinoX;
-            mariposa.style.top = config.destinoY;
-            mariposa.style.transform = `rotate(${Math.random() * 720}deg) scale(1)`;
-            
-            setTimeout(() => {
-                mariposa.style.animation = `floatButterfly ${12 + Math.random() * 8}s infinite ease-in-out`;
-                mariposa.style.animationDelay = (Math.random() * 5) + 's';
-                mariposa.style.opacity = '0.15';
-            }, config.duracion * 1000 + 500);
-            
-        }, config.retraso);
+            mariposa.style.opacity = '1';
+        }, config.delay);
+        
+        setTimeout(() => {
+            mariposa.remove();
+        }, config.delay + 5000);
     });
-    
-    crearEstelaMariposas(centroX, centroY);
 }
-
-function crearEstelaMariposas(x, y) {
-    const estela = document.createElement('div');
-    estela.style.position = 'fixed';
-    estela.style.left = (x - 100) + 'px';
-    estela.style.top = (y - 100) + 'px';
-    estela.style.width = '200px';
-    estela.style.height = '200px';
-    estela.style.pointerEvents = 'none';
-    estela.style.zIndex = '12';
-    estela.style.background = 'radial-gradient(circle, rgba(82, 183, 136, 0.08) 0%, transparent 70%)';
-    estela.style.borderRadius = '50%';
-    estela.style.animation = 'expandirEstela 2s ease-out forwards';
-    document.body.appendChild(estela);
-    
-    setTimeout(() => {
-        estela.remove();
-    }, 2500);
-}
-
-// Añadir keyframe para la estela
-const styleEstela = document.createElement('style');
-styleEstela.textContent = `
-    @keyframes expandirEstela {
-        0% {
-            transform: scale(0.5);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(styleEstela);
 
 // ===== ABRIR EL SOBRE =====
 function abrirSobre(e) {
@@ -115,7 +71,7 @@ function abrirSobre(e) {
     if (sobreAbierto) return;
     sobreAbierto = true;
     
-    // 1. INICIAR LA MÚSICA
+    // 1. MÚSICA
     if (!musicaIniciada) {
         audio.volume = 0.7;
         audio.play().then(() => {
@@ -123,69 +79,34 @@ function abrirSobre(e) {
             btnMusica.classList.add('sonando');
             iconoMusica.textContent = '🔊';
             btnMusica.classList.add('visible');
-            console.log('🎵 Música iniciada');
-        }).catch(error => {
-            console.log('Error al iniciar música:', error);
+        }).catch(() => {
             iconoMusica.textContent = '▶️';
             btnMusica.classList.add('visible');
         });
     }
     
-    // 2. ABRIR EL SOBRE
+    // 2. ABRIR SOBRE
     sobreWrapper.classList.add('abierto');
     btnMusica.classList.add('visible');
     
-    // 3. CREAR MARIPOSAS VOLANDO
+    // 3. MARIPOSAS VOLANDO
     crearMariposasVolando();
     
-    // 4. EFECTO DE BRILLO en el sello
-    const sello = document.querySelector('.sobre-sello');
-    if (sello) {
-        sello.style.animation = 'pulseSello 0.5s ease-in-out 3';
-        setTimeout(() => {
-            sello.style.animation = 'pulseSello 2s ease-in-out infinite';
-        }, 1500);
-    }
-    
-    // 5. DESAPARECER EL SOBRE
+    // 4. DESAPARECER SOBRE
     setTimeout(() => {
         sobreContainer.classList.add('abierto');
-    }, 900);
+    }, 1000);
     
-    // 6. MOSTRAR CONTENIDO
+    // 5. MOSTRAR CONTENIDO
     setTimeout(() => {
         menuNavegacion.style.display = 'flex';
         document.body.style.overflow = 'auto';
         mariposaCentral.classList.add('visible');
         activarAnimacionesScroll();
-        
-        setTimeout(() => {
-            crearMariposasAdicionales();
-        }, 2000);
-        
-    }, 1100);
+    }, 1300);
 }
 
-function crearMariposasAdicionales() {
-    for (let i = 0; i < 4; i++) {
-        setTimeout(() => {
-            const mariposa = document.createElement('div');
-            mariposa.className = 'butterfly';
-            mariposa.textContent = '🦋';
-            mariposa.style.position = 'fixed';
-            mariposa.style.zIndex = '10';
-            mariposa.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
-            mariposa.style.pointerEvents = 'none';
-            mariposa.style.opacity = '0.08';
-            mariposa.style.left = (10 + Math.random() * 80) + '%';
-            mariposa.style.top = (10 + Math.random() * 80) + '%';
-            mariposa.style.animation = `floatButterfly ${15 + Math.random() * 15}s infinite ease-in-out`;
-            mariposa.style.animationDelay = (Math.random() * 10) + 's';
-            document.body.appendChild(mariposa);
-        }, i * 800);
-    }
-}
-
+// ===== ACTIVAR ANIMACIONES SCROLL =====
 function activarAnimacionesScroll() {
     const items = document.querySelectorAll('.schedule-item, .info-card');
     const observer = new IntersectionObserver((entries) => {
@@ -240,7 +161,7 @@ btnMusica.addEventListener('click', function(e) {
 });
 
 // ============================================================
-// ===== CONTADOR =====
+// CONTADOR
 // ============================================================
 
 function actualizarContador() {
@@ -267,7 +188,7 @@ setInterval(actualizarContador, 1000);
 actualizarContador();
 
 // ============================================================
-// ===== MODAL RSVP =====
+// MODAL RSVP
 // ============================================================
 
 const modal = document.getElementById('rsvpModal');

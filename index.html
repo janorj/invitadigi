@@ -5,71 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>🌿 Alejandro & Paula - Nuestra Boda</title>
     
-    <meta property="og:title" content="🌿 Alejandro & Paula - ¡Nos Casamos!" />
-    <meta property="og:description" content="5 de diciembre de 2026 - Te esperamos para celebrar nuestro amor" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tu-sitio.netlify.app" />
-    <meta property="og:image" content="https://tu-sitio.netlify.app/assets/img/foto-pareja.jpg" />
-    
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- ===== ANIMACIÓN DE SOBRE SOPHISTICATED ===== -->
+    <!-- ===== SOBRE REALISTA 2D ===== -->
     <div id="sobreContainer" class="sobre-container">
         <div class="sobre-wrapper" id="sobreWrapper">
             <div class="sobre">
-                <!-- Tapa superior con diseño elegante -->
+                <!-- Tapa -->
                 <div class="sobre-tapa">
-                    <div class="tapa-decoracion"></div>
+                    <div class="tapa-sombra"></div>
+                    <div class="tapa-doblez"></div>
                 </div>
                 
-                <!-- Cuerpo del sobre -->
+                <!-- Cuerpo -->
                 <div class="sobre-cuerpo">
-                    <!-- Borde decorativo -->
-                    <div class="borde-ornamental"></div>
-                    
-                    <!-- Texto principal -->
-                    <div class="sobre-texto-principal">
+                    <div class="textura-papel"></div>
+                    <div class="sobre-texto">
                         <span class="texto-linea">TOCAR PARA</span>
                         <span class="texto-linea">ABRIR LA</span>
-                        <span class="texto-linea titulo-invitacion">INVITACIÓN</span>
+                        <span class="texto-linea titulo-principal">INVITACIÓN</span>
                     </div>
-                    
-                    <!-- Detalles decorativos -->
-                    <div class="decoracion-inferior">
-                        <span class="deco-linea">✦ ✦ ✦</span>
+                    <div class="linea-decorativa"></div>
+                </div>
+                
+                <!-- SELLO PLATEADO CON MARIPOSA -->
+                <div class="sello-container">
+                    <div class="sello-base">
+                        <div class="sello-brillo"></div>
+                        <div class="sello-mariposa">🦋</div>
+                        <div class="sello-anillo"></div>
                     </div>
                 </div>
                 
-                <!-- Sello con mariposa -->
-                <div class="sobre-sello">
-                    <div class="sello-mariposa">🦋</div>
-                    <div class="sello-anillo"></div>
-                </div>
-                
-                <!-- Esquinas decorativas -->
+                <!-- Esquinas -->
                 <div class="esquina esquina-tl"></div>
                 <div class="esquina esquina-tr"></div>
                 <div class="esquina esquina-bl"></div>
                 <div class="esquina esquina-br"></div>
             </div>
-            
-            <!-- Sombra del sobre -->
             <div class="sobre-sombra"></div>
         </div>
-        
-        <!-- Texto de instrucción -->
         <p class="sobre-instruccion">💫 Toca para abrir</p>
     </div>
 
-    <!-- ===== REPRODUCTOR DE MÚSICA ===== -->
+    <!-- ===== MÚSICA ===== -->
     <audio id="musicaFondo" loop preload="auto">
-        <source src="assets/musica/lava.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
+        <source src="assets/musica/cancion.mp3" type="audio/mpeg">
     </audio>
 
     <!-- ===== BOTÓN DE MÚSICA ===== -->
@@ -85,7 +68,7 @@
     <div class="butterfly butterfly-5">🦋</div>
     <div class="butterfly butterfly-6">🦋</div>
 
-    <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
+    <!-- ===== MENÚ ===== -->
     <nav class="menu" id="menuNavegacion" style="display:none;">
         <a href="#seccion1" class="menu-item">🌿 Inicio</a>
         <a href="#seccion2" class="menu-item">💒 Boda</a>
@@ -105,60 +88,33 @@
                 <span class="flor-rama">🌺</span>
                 <span class="flor-rama">🌿</span>
             </div>
-
             <div class="mariposa-central" id="mariposaCentral">🦋</div>
-
             <div class="texto-principal">
                 <p class="bendicion">✦ Con la bendición de Dios ✦</p>
                 <h1 class="titulo">Alejandro <span class="ampersand">&amp;</span> Paula</h1>
             </div>
-
             <div class="mariposas-titulo">
                 <span class="mt-1">🦋</span>
                 <span class="mt-2">🌿</span>
                 <span class="mt-3">🦋</span>
             </div>
-
             <div class="mensaje-fe">
-                <p class="fe-texto">
-                    "La fidelidad a Dios comienza en lo poco, y cuando Él nos bendice con abundancia, 
-                    nuestra respuesta es una entrega aún mayor, pues cada bendición trae consigo un peso de gloria. 
-                    Dios nos ha bendecido y queremos que seas parte de nuestra unión."
-                </p>
+                <p class="fe-texto">"La fidelidad a Dios comienza en lo poco, y cuando Él nos bendice con abundancia, nuestra respuesta es una entrega aún mayor, pues cada bendición trae consigo un peso de gloria. Dios nos ha bendecido y queremos que seas parte de nuestra unión."</p>
             </div>
-
             <div class="scroll-hint">↓</div>
         </div>
     </section>
 
-    <!-- ===== SECCIÓN 2: INFORMACIÓN DE LA BODA ===== -->
+    <!-- ===== SECCIÓN 2: BODA ===== -->
     <section class="section fullscreen info-boda-section" id="seccion2">
         <div class="section-content">
-            <div class="separador-top">
-                <span>💒</span>
-                <span>🦋</span>
-                <span>💒</span>
-            </div>
-
+            <div class="separador-top"><span>💒</span><span>🦋</span><span>💒</span></div>
             <div class="info-boda-completa">
-                <p class="info-boda-fecha">
-                    Nos casamos el <strong>05 de diciembre, 2026</strong> a las <strong>14:30 hrs</strong>
-                </p>
-                <p class="info-boda-lugar">
-                    en <strong>Camino Tromen 3.5, Hijuela 22, Temuco</strong>
-                </p>
-                <div class="separador-info">
-                    <span>🦋</span>
-                    <span>🌿</span>
-                    <span>🦋</span>
-                </div>
-                <p class="info-boda-mensaje">
-                    Esperamos contar con tu presencia y compañía en este día tan especial. 
-                    Por favor, confirma tu asistencia antes del <strong>01 de noviembre</strong> 
-                    para poder prepararnos con la alegría de saber que nos acompañarás.
-                </p>
+                <p class="info-boda-fecha">Nos casamos el <strong>05 de diciembre, 2026</strong> a las <strong>14:30 hrs</strong></p>
+                <p class="info-boda-lugar">en <strong>Camino Tromen 3.5, Hijuela 22, Temuco</strong></p>
+                <div class="separador-info"><span>🦋</span><span>🌿</span><span>🦋</span></div>
+                <p class="info-boda-mensaje">Esperamos contar con tu presencia y compañía en este día tan especial. Por favor, confirma tu asistencia antes del <strong>01 de noviembre</strong> para poder prepararnos con la alegría de saber que nos acompañarás.</p>
             </div>
-
             <div class="scroll-hint">↓</div>
         </div>
     </section>
@@ -166,40 +122,15 @@
     <!-- ===== SECCIÓN 3: CONTADOR ===== -->
     <section class="section fullscreen contador-section" id="seccion3">
         <div class="section-content">
-            <div class="separador-top">
-                <span>🦋</span>
-                <span>🌿</span>
-                <span>🦋</span>
-            </div>
-
+            <div class="separador-top"><span>🦋</span><span>🌿</span><span>🦋</span></div>
             <p class="section-subtitle">FALTAN</p>
             <div class="countdown-grid">
-                <div class="countdown-item">
-                    <span id="dias">00</span>
-                    <span class="label">Días</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="horas">00</span>
-                    <span class="label">Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutos">00</span>
-                    <span class="label">Minutos</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="segundos">00</span>
-                    <span class="label">Segundos</span>
-                </div>
+                <div class="countdown-item"><span id="dias">00</span><span class="label">Días</span></div>
+                <div class="countdown-item"><span id="horas">00</span><span class="label">Horas</span></div>
+                <div class="countdown-item"><span id="minutos">00</span><span class="label">Minutos</span></div>
+                <div class="countdown-item"><span id="segundos">00</span><span class="label">Segundos</span></div>
             </div>
-
-            <div class="mariposas-contador">
-                <span>🌿</span>
-                <span>🦋</span>
-                <span>🌸</span>
-                <span>🦋</span>
-                <span>🌿</span>
-            </div>
-
+            <div class="mariposas-contador"><span>🌿</span><span>🦋</span><span>🌸</span><span>🦋</span><span>🌿</span></div>
             <div class="scroll-hint">↓</div>
         </div>
     </section>
@@ -207,47 +138,15 @@
     <!-- ===== SECCIÓN 4: CRONOGRAMA ===== -->
     <section class="section fullscreen schedule-section" id="seccion4">
         <div class="section-content">
-            <div class="separador-top">
-                <span>🌸</span>
-                <span>🦋</span>
-                <span>🌿</span>
-            </div>
-
+            <div class="separador-top"><span>🌸</span><span>🦋</span><span>🌿</span></div>
             <h2 class="section-title">✨ Nuestro día</h2>
-
             <div class="schedule-timeline">
-                <div class="schedule-item">
-                    <div class="schedule-icon">💒</div>
-                    <div class="schedule-time">13:00</div>
-                    <div class="schedule-event">Ceremonia</div>
-                    <div class="schedule-place">Iglesia</div>
-                </div>
-                <div class="schedule-item">
-                    <div class="schedule-icon">🥂</div>
-                    <div class="schedule-time">14:30</div>
-                    <div class="schedule-event">Cocktail</div>
-                    <div class="schedule-place">Jardines</div>
-                </div>
-                <div class="schedule-item">
-                    <div class="schedule-icon">🍽️</div>
-                    <div class="schedule-time">15:30</div>
-                    <div class="schedule-event">Banquete</div>
-                    <div class="schedule-place">Salón</div>
-                </div>
-                <div class="schedule-item">
-                    <div class="schedule-icon">🎂</div>
-                    <div class="schedule-time">17:30</div>
-                    <div class="schedule-event">Tarta</div>
-                    <div class="schedule-place">Salón</div>
-                </div>
-                <div class="schedule-item">
-                    <div class="schedule-icon">💃</div>
-                    <div class="schedule-time">19:00</div>
-                    <div class="schedule-event">Baile</div>
-                    <div class="schedule-place">Pista</div>
-                </div>
+                <div class="schedule-item"><div class="schedule-icon">💒</div><div class="schedule-time">13:00</div><div class="schedule-event">Ceremonia</div><div class="schedule-place">Iglesia</div></div>
+                <div class="schedule-item"><div class="schedule-icon">🥂</div><div class="schedule-time">14:30</div><div class="schedule-event">Cocktail</div><div class="schedule-place">Jardines</div></div>
+                <div class="schedule-item"><div class="schedule-icon">🍽️</div><div class="schedule-time">15:30</div><div class="schedule-event">Banquete</div><div class="schedule-place">Salón</div></div>
+                <div class="schedule-item"><div class="schedule-icon">🎂</div><div class="schedule-time">17:30</div><div class="schedule-event">Tarta</div><div class="schedule-place">Salón</div></div>
+                <div class="schedule-item"><div class="schedule-icon">💃</div><div class="schedule-time">19:00</div><div class="schedule-event">Baile</div><div class="schedule-place">Pista</div></div>
             </div>
-
             <div class="scroll-hint">↓</div>
         </div>
     </section>
@@ -255,44 +154,14 @@
     <!-- ===== SECCIÓN 5: LUGAR ===== -->
     <section class="section fullscreen info-section" id="seccion5">
         <div class="section-content">
-            <div class="separador-top">
-                <span>🌿</span>
-                <span>🦋</span>
-                <span>🌸</span>
-            </div>
-
+            <div class="separador-top"><span>🌿</span><span>🦋</span><span>🌸</span></div>
             <h2 class="section-title">📍 Lugar</h2>
-
             <div class="event-info">
-                <div class="info-card">
-                    <div class="info-icon">📅</div>
-                    <p class="info-label">Fecha</p>
-                    <p class="info-value">5 de Diciembre 2026</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">⏰</div>
-                    <p class="info-label">Hora</p>
-                    <p class="info-value">14:30 hrs</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">📍</div>
-                    <p class="info-label">Lugar</p>
-                    <p class="info-value">Camino Tromen 3.5</p>
-                    <a href="https://maps.google.com" target="_blank" class="map-link">Ver en Google Maps →</a>
-                </div>
+                <div class="info-card"><div class="info-icon">📅</div><p class="info-label">Fecha</p><p class="info-value">5 de Diciembre 2026</p></div>
+                <div class="info-card"><div class="info-icon">⏰</div><p class="info-label">Hora</p><p class="info-value">14:30 hrs</p></div>
+                <div class="info-card"><div class="info-icon">📍</div><p class="info-label">Lugar</p><p class="info-value">Camino Tromen 3.5</p><a href="https://maps.google.com" target="_blank" class="map-link">Ver en Google Maps →</a></div>
             </div>
-
-            <div class="message-box">
-                <p class="message-text">
-                    "La fidelidad a Dios comienza en lo poco"
-                </p>
-                <div class="message-decoracion">
-                    <span>🌿</span>
-                    <span>🦋</span>
-                    <span>🌸</span>
-                </div>
-            </div>
-
+            <div class="message-box"><p class="message-text">"La fidelidad a Dios comienza en lo poco"</p><div class="message-decoracion"><span>🌿</span><span>🦋</span><span>🌸</span></div></div>
             <div class="scroll-hint">↓</div>
         </div>
     </section>
@@ -300,35 +169,13 @@
     <!-- ===== SECCIÓN 6: RSVP ===== -->
     <section class="section fullscreen rsvp-section" id="seccion6">
         <div class="section-content">
-            <div class="separador-top">
-                <span>🦋</span>
-                <span>🌿</span>
-                <span>🦋</span>
-            </div>
-
+            <div class="separador-top"><span>🦋</span><span>🌿</span><span>🦋</span></div>
             <h2 class="section-title">💌 Confirma tu asistencia</h2>
-
             <p class="rsvp-text">Confirma antes del <strong>01 de noviembre</strong></p>
-
-            <button id="btnRSVP" class="rsvp-button">
-                <span>Confirmar Asistencia</span>
-                <span class="button-icon">🌿</span>
-            </button>
-
+            <button id="btnRSVP" class="rsvp-button"><span>Confirmar Asistencia</span><span class="button-icon">🌿</span></button>
             <p class="rsvp-note">¡Tu presencia es importante para nosotros!</p>
-
-            <div class="mariposas-rsvp">
-                <span>🌿</span>
-                <span>🦋</span>
-                <span>🌸</span>
-                <span>🦋</span>
-                <span>🌿</span>
-            </div>
-
-            <div class="footer-rsvp">
-                <p>Con mucho amor, Alejandro & Paula</p>
-                <p class="footer-note">#AlejandroYPaula2026</p>
-            </div>
+            <div class="mariposas-rsvp"><span>🌿</span><span>🦋</span><span>🌸</span><span>🦋</span><span>🌿</span></div>
+            <div class="footer-rsvp"><p>Con mucho amor, Alejandro & Paula</p><p class="footer-note">#AlejandroYPaula2026</p></div>
         </div>
     </section>
 
@@ -339,22 +186,10 @@
             <h2>Confirmar Asistencia</h2>
             <p class="modal-subtitle">Cuéntanos si podrás acompañarnos</p>
             <form id="rsvpForm" class="rsvp-form">
-                <div class="form-group">
-                    <label for="nombre">Tu nombre</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Alejandro" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefono">Teléfono (opcional)</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="+34 666 000 000">
-                </div>
-                <div class="form-group">
-                    <label for="invitados">Número de acompañantes</label>
-                    <input type="number" id="invitados" name="invitados" min="0" max="5" value="0">
-                </div>
-                <div class="form-group">
-                    <label>¿Alergias o restricciones?</label>
-                    <textarea id="alergias" name="alergias" placeholder="Ej: Alergia al marisco, vegano..."></textarea>
-                </div>
+                <div class="form-group"><label for="nombre">Tu nombre</label><input type="text" id="nombre" placeholder="Ej: Alejandro" required></div>
+                <div class="form-group"><label for="telefono">Teléfono (opcional)</label><input type="tel" id="telefono" placeholder="+34 666 000 000"></div>
+                <div class="form-group"><label for="invitados">Número de acompañantes</label><input type="number" id="invitados" min="0" max="5" value="0"></div>
+                <div class="form-group"><label>¿Alergias o restricciones?</label><textarea id="alergias" placeholder="Ej: Alergia al marisco, vegano..."></textarea></div>
                 <button type="submit" class="submit-rsvp">Enviar confirmación ✨</button>
             </form>
             <div id="rsvpSuccess" class="rsvp-success" style="display:none;">
@@ -366,8 +201,6 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/sobre3d.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

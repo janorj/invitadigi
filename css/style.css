@@ -1555,3 +1555,400 @@ body {
         font-size: 0.8rem;
     }
 }
+
+/* ============================================================
+   SOBRE REALISTA 2D - VERDE CON SELLO PLATEADO
+   AGREGAR AL FINAL DEL ARCHIVO style.css
+   ============================================================ */
+
+.sobre-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: radial-gradient(ellipse at center, #2D6A4F 0%, #1A3A2A 60%, #0D1F15 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.sobre-container.abierto {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.92);
+}
+
+.sobre-wrapper {
+    position: relative;
+    width: 340px;
+    height: 230px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sobre-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.sobre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sobre-wrapper.abierto .sobre {
+    transform: translateY(-20px) perspective(800px) rotateX(5deg);
+}
+
+.sobre-wrapper.abierto .sobre-tapa {
+    transform: perspective(800px) rotateX(-180deg);
+    transform-origin: top center;
+}
+
+.sobre-tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 58%;
+    background: linear-gradient(170deg, #3A8A5A 0%, #2D6A4F 30%, #1E4D3A 70%, #2D6A4F 100%);
+    border: 3px solid #1A3A2A;
+    border-bottom: none;
+    border-radius: 18px 18px 0 0;
+    transform-origin: top center;
+    transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: rotateX(0deg);
+    backface-visibility: hidden;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2), inset 0 -20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tapa-sombra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.05) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.tapa-doblez {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72%;
+    height: 28px;
+    background: linear-gradient(180deg, #1E4D3A 0%, #2D6A4F 100%);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    border-left: 3px solid #1A3A2A;
+    border-right: 3px solid #1A3A2A;
+    border-bottom: 3px solid #1A3A2A;
+    border-radius: 0 0 4px 4px;
+    box-shadow: inset 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.sobre-tapa::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1.5px solid rgba(255,215,0,0.08);
+    border-radius: 10px 10px 0 0;
+    pointer-events: none;
+}
+
+.sobre-tapa::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid rgba(255,215,0,0.04);
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+}
+
+.sobre-cuerpo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: linear-gradient(175deg, #F5F0E8 0%, #EDE5DA 40%, #E5DDD0 70%, #F5F0E8 100%);
+    border: 3px solid #1A3A2A;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 20px;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.15), inset 0 2px 30px rgba(255,255,255,0.2);
+}
+
+.textura-papel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 18px 18px;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.sobre-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    z-index: 2;
+    position: relative;
+}
+
+.texto-linea {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #2D3A2D;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+.texto-linea.titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1A3A2A;
+    letter-spacing: 6px;
+    opacity: 1;
+    margin-top: 4px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    background: linear-gradient(180deg, #1A3A2A 0%, #2D6A4F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.linea-decorativa {
+    width: 60px;
+    height: 2px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, transparent, rgba(45,106,79,0.2), transparent);
+    border-radius: 2px;
+}
+
+.sello-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: selloPulso 2.5s ease-in-out infinite;
+}
+
+.sello-base {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 30% 30%, #E8E8E8 0%, #C0C0C0 40%, #A8A8A8 70%, #909090 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25), inset 0 -4px 15px rgba(0,0,0,0.15), inset 0 4px 15px rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(200,200,200,0.3);
+}
+
+.sello-brillo {
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    width: 40%;
+    height: 25%;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+    pointer-events: none;
+}
+
+.sello-anillo {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    border: 2px solid rgba(200,200,200,0.3);
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.1), 0 0 20px rgba(255,255,255,0.05);
+    pointer-events: none;
+}
+
+.sello-anillo::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(200,200,200,0.15);
+}
+
+.sello-mariposa {
+    font-size: 2.6rem;
+    position: relative;
+    z-index: 2;
+    animation: mariposaSello 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+    line-height: 1;
+}
+
+@keyframes selloPulso {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.04); }
+}
+
+@keyframes mariposaSello {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.esquina {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-color: rgba(45,106,79,0.12);
+    border-style: solid;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.esquina-tl { top: 12px; left: 12px; border-width: 3px 0 0 3px; border-radius: 6px 0 0 0; }
+.esquina-tr { top: 12px; right: 12px; border-width: 3px 3px 0 0; border-radius: 0 6px 0 0; }
+.esquina-bl { bottom: 12px; left: 12px; border-width: 0 0 3px 3px; border-radius: 0 0 0 6px; }
+.esquina-br { bottom: 12px; right: 12px; border-width: 0 3px 3px 0; border-radius: 0 0 6px 0; }
+
+.sobre-sombra {
+    position: absolute;
+    bottom: -25px;
+    left: 10%;
+    width: 80%;
+    height: 35px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(15px);
+    transition: all 0.8s ease;
+}
+
+.sobre-wrapper.abierto .sobre-sombra {
+    width: 55%;
+    opacity: 0.4;
+    transform: translateY(-10px);
+    filter: blur(20px);
+}
+
+.sobre-instruccion {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 35px;
+    letter-spacing: 4px;
+    animation: pulseInstruccion 2s ease-in-out infinite;
+    font-weight: 300;
+}
+
+@keyframes pulseInstruccion {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(4px); }
+}
+
+/* ===== MARIPOSAS VOLANDO ===== */
+.mariposa-voladora {
+    position: fixed;
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 15;
+    opacity: 0;
+}
+
+@keyframes volarMariposa1 {
+    0% { opacity: 0; transform: scale(0.2) rotate(0deg) translate(0,0); }
+    15% { opacity: 1; transform: scale(1) rotate(25deg) translate(-40px,-60px); }
+    40% { opacity: 1; transform: scale(1.1) rotate(-15deg) translate(-120px,-180px); }
+    70% { opacity: 0.8; transform: scale(0.9) rotate(20deg) translate(-220px,-120px); }
+    100% { opacity: 0.1; transform: scale(0.6) rotate(5deg) translate(-320px,-40px); }
+}
+
+@keyframes volarMariposa2 {
+    0% { opacity: 0; transform: scale(0.2) rotate(0deg) translate(0,0); }
+    15% { opacity: 1; transform: scale(1) rotate(-25deg) translate(40px,-50px); }
+    40% { opacity: 1; transform: scale(1.1) rotate(15deg) translate(130px,-160px); }
+    70% { opacity: 0.8; transform: scale(0.9) rotate(-20deg) translate(230px,-100px); }
+    100% { opacity: 0.1; transform: scale(0.6) rotate(-5deg) translate(330px,-20px); }
+}
+
+@keyframes volarMariposa3 {
+    0% { opacity: 0; transform: scale(0.2) rotate(0deg) translate(0,0); }
+    15% { opacity: 1; transform: scale(1) rotate(30deg) translate(-20px,-80px); }
+    40% { opacity: 1; transform: scale(1.1) rotate(-20deg) translate(-40px,-220px); }
+    70% { opacity: 0.8; transform: scale(0.9) rotate(25deg) translate(20px,-320px); }
+    100% { opacity: 0.1; transform: scale(0.6) rotate(10deg) translate(60px,-400px); }
+}
+
+@keyframes volarMariposa4 {
+    0% { opacity: 0; transform: scale(0.2) rotate(0deg) translate(0,0); }
+    20% { opacity: 1; transform: scale(1) rotate(40deg) translate(50px,-30px); }
+    50% { opacity: 1; transform: scale(1.1) rotate(-30deg) translate(-80px,-150px); }
+    80% { opacity: 0.7; transform: scale(0.8) rotate(50deg) translate(120px,-250px); }
+    100% { opacity: 0.05; transform: scale(0.4) rotate(20deg) translate(-180px,-350px); }
+}
+
+.mariposa-voladora.ruta-1 { animation: volarMariposa1 3.5s ease-in-out forwards; }
+.mariposa-voladora.ruta-2 { animation: volarMariposa2 4s ease-in-out forwards; }
+.mariposa-voladora.ruta-3 { animation: volarMariposa3 3s ease-in-out forwards; }
+.mariposa-voladora.ruta-4 { animation: volarMariposa4 4.5s ease-in-out forwards; }
+.mariposa-voladora.ruta-5 { animation: volarMariposa1 3.8s ease-in-out forwards; }
+.mariposa-voladora.ruta-6 { animation: volarMariposa2 4.2s ease-in-out forwards; }
+.mariposa-voladora.ruta-7 { animation: volarMariposa3 3.2s ease-in-out forwards; }
+.mariposa-voladora.ruta-8 { animation: volarMariposa4 4.8s ease-in-out forwards; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .sobre-wrapper { width: 280px; height: 190px; }
+    .texto-linea { font-size: 0.65rem; letter-spacing: 3px; }
+    .texto-linea.titulo-principal { font-size: 1.4rem; letter-spacing: 4px; }
+    .sello-container { width: 60px; height: 60px; }
+    .sello-mariposa { font-size: 2rem; }
+    .sobre-instruccion { font-size: 0.7rem; margin-top: 25px; }
+    .esquina { width: 18px; height: 18px; border-width: 2px !important; }
+    .esquina-tl, .esquina-tr { top: 8px; }
+    .esquina-tl, .esquina-bl { left: 8px; }
+    .esquina-tr, .esquina-br { right: 8px; }
+    .esquina-bl, .esquina-br { bottom: 8px; }
+}
+
+@media (max-width: 360px) {
+    .sobre-wrapper { width: 230px; height: 160px; }
+    .texto-linea { font-size: 0.5rem; letter-spacing: 2px; }
+    .texto-linea.titulo-principal { font-size: 1.1rem; letter-spacing: 3px; }
+    .sello-container { width: 50px; height: 50px; }
+    .sello-mariposa { font-size: 1.6rem; }
+    .sobre-instruccion { font-size: 0.6rem; }
+}
